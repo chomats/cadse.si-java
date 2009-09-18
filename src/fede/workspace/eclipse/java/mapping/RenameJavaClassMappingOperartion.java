@@ -16,7 +16,6 @@ import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.delta.MappingOperation;
 import fr.imag.adele.cadse.core.var.ContextVariable;
-
 public class RenameJavaClassMappingOperartion extends MappingOperation {
 	String	cn;
 	String	oldcn;

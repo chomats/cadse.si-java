@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>SI.Workspace.Java</name>
+	<name>fr.imag.adele.cadse.si.workspace.java</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>fede.tool.workspace.view.composition.builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>fede.tool.workspace.view.validation.builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>fede.tool.workspace.view.packaging.builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>fr.imag.adele.cadse.env_melusine.builder.MD</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -42,7 +22,6 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>fede.tool.workspace.view.Melusine</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 	</natures>

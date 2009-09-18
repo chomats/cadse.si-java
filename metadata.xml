@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipojo>
+	<component immediate="false" classname="fr.imag.adele.fede.workspace.si.java.Java" factory="fr.imag.adele.fede.workspace.si.java.Java" architecture="true">
+		<callback transition="validate" method="start"/>
+		<requires field="workspaceCU" optional="true" filter="(sam.domain.root=Workspace)"/>
+		<requires field="platformEclipse" optional="false"/>
+	</component>
+	<instance component="fr.imag.adele.fede.workspace.si.java.Java" name="fr.imag.adele.cadse.si.workspace.java.instance"/>
+</ipojo>
