@@ -183,10 +183,10 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 			IProject p = getProject();
 			IProgressMonitor defaultMonitor = View.getDefaultMonitor();
 			MelusineProjectManager.createAndOpenProject(p, defaultMonitor);
-			if (getItem() != null) {
-				View.setItemPersistenceID(p, getItem());
+			if (getOwnerItem() != null) {
+				View.setItemPersistenceID(p, getOwnerItem());
 			}
-			JavaProjectManager.createJavaProject(p, getItem(), defaultMonitor, ContextVariable.DEFAULT, sourcefolder,
+			JavaProjectManager.createJavaProject(p, getOwnerItem(), defaultMonitor, ContextVariable.DEFAULT, sourcefolder,
 					classFolder);
 
 			/*
@@ -227,7 +227,9 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @return the java source element
 	 */
 	public IPackageFragmentRoot getJavaSourceElement(ContextVariable cxt) {
-
+		if (cxt.isGenerated())
+			return getGeneratedJavaSourceElement(cxt);
+			
 		if (!sourcefolder.isNull()) {
 
 			IFolder source = getProject(cxt).getFolder(sourcefolder.compute(cxt, getItem()));
@@ -235,6 +237,23 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 			if (jp != null) {
 				return jp.getPackageFragmentRoot(source);
 			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the java source element.
+	 * 
+	 * @param cxt
+	 *            the cxt
+	 * 
+	 * @return the java source element
+	 */
+	public IPackageFragmentRoot getGeneratedJavaSourceElement(ContextVariable cxt) {
+		IFolder source = getProject(cxt).getFolder("src-gen");
+		IJavaProject jp = getJavaProject(cxt);
+		if (jp != null) {
+			return jp.getPackageFragmentRoot(source);
 		}
 		return null;
 	}
