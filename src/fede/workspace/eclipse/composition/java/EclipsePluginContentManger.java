@@ -160,7 +160,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			createPDEProject(info, monitor);
 
 		} catch (CoreException e) {
-			throw new CadseException("Cannot create pde project from {0} : {1}", e, getItem().getName(), e.getMessage());
+			throw new CadseException("Cannot create pde project from {0} : {1}", e, getOwnerItem().getName(), e.getMessage());
 		}
 	}
 
@@ -170,12 +170,12 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param model
 	 *            the model
 	 */
-	void computeModel(PDEGenerateModel model) {
+	protected void computeModel(PDEGenerateModel model) {
 		model.activatorName = "Activator";
 		model.packageName = getDefaultPackage();
 		model.qualifiedActivatorName = getDefaultPackage() + "." + model.activatorName;
 		model.isLazyStart = false;
-		model.pluginID = getItem().getQualifiedName();
+		model.pluginID = getOwnerItem().getQualifiedName();
 		model.sourceName = SOURCES;
 		model.importsPackages = computeManifestImports();
 		model.exportsPackages = computeManifestExports();
