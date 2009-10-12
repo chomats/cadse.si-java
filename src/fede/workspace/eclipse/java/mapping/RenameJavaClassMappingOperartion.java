@@ -10,12 +10,13 @@ import org.eclipse.ltk.core.refactoring.Change;
 import fede.workspace.eclipse.java.manager.JavaFileContentManager;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CadseRootCST;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.delta.ItemDelta;
 import fr.imag.adele.cadse.core.delta.MappingOperation;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+
 public class RenameJavaClassMappingOperartion extends MappingOperation {
 	String	cn;
 	String	oldcn;
@@ -28,7 +29,7 @@ public class RenameJavaClassMappingOperartion extends MappingOperation {
 	public void commit(LogicalWorkspace wl, Item goodItem) {
 		JavaFileContentManager cm = (JavaFileContentManager) goodItem.getContentItem();
 		ContextVariable oldcontext = new ContextVariable();
-		oldcontext.putValue(goodItem, CadseRootCST.ITEM_TYPE_at_NAME, oldcn);
+		oldcontext.putValue(goodItem, CadseGCST.ITEM_at_NAME, oldcn);
 
 		ICompilationUnit cu = cm.getCompilationUnit(oldcontext);
 		IResource f = cu.getResource();

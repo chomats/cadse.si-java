@@ -104,6 +104,7 @@ import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
 import fr.imag.adele.cadse.core.ui.IModelController;
 import fr.imag.adele.cadse.core.ui.IPageController;
+
 /**
  * A dialog which prompts the user to enter an expression for evaluation.
  */

@@ -27,10 +27,10 @@ public class MoveJavaClassMappingOperation extends MappingOperation {
 		//
 		// ContextVariable oldcontext = new ContextVariable();
 		// Item packageItem = GeneratedInterfaceManager.getPackage(goodItem);
-		// oldcontext.putValue(packageItem, CadseRootCST.ITEM_TYPE_at_NAME,
+		// oldcontext.putValue(packageItem, CadseGCST.ITEM_at_NAME,
 		// oldpn);
 		// if (oldcn != null) {
-		// oldcontext.putValue(goodItem, CadseRootCST.ITEM_TYPE_at_NAME, oldcn);
+		// oldcontext.putValue(goodItem, CadseGCST.ITEM_at_NAME, oldcn);
 		// }
 		//
 		// ICompilationUnit cu = cm.getCompilationUnit(oldcontext);

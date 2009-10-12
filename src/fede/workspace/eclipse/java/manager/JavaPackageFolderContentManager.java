@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.PlatformUI;
 
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -57,8 +58,8 @@ public class JavaPackageFolderContentManager extends FolderContentManager {
 	 * @param packagename
 	 *            the packagename
 	 */
-	public JavaPackageFolderContentManager(ContentItem parent, Item item, Variable packagename) {
-		super(parent, item, new PathFolderVariable(packagename));
+	public JavaPackageFolderContentManager(CompactUUID id, Variable packagename) {
+		super(id, new PathFolderVariable(packagename));
 		this.packagename = packagename;
 	}
 

@@ -50,13 +50,18 @@ import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.eclipse.java.WSJavaPlugin;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.ChangeID;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.WorkspaceListener;
+import fr.imag.adele.cadse.core.attribute.IAttributeType;
 import fr.imag.adele.cadse.core.delta.ImmutableItemDelta;
 import fr.imag.adele.cadse.core.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.impl.var.NullVariable;
+import fr.imag.adele.cadse.core.util.Convert;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
@@ -105,8 +110,8 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param classFolder
 	 *            the class folder
 	 */
-	public JavaProjectContentManager(Item item, Variable projectname, Variable sourcefolder, Variable classFolder) {
-		super(item, projectname);
+	public JavaProjectContentManager(CompactUUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
+		super(id, projectname);
 		assert sourcefolder != null;
 		assert classFolder != null;
 		assert (sourcefolder.isNull() && classFolder.isNull()) || (!sourcefolder.isNull() && !classFolder.isNull());
@@ -125,8 +130,8 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param sourcefolder
 	 *            the sourcefolder
 	 */
-	public JavaProjectContentManager(Item item, Variable projectname, Variable sourcefolder) {
-		this(item, projectname, sourcefolder, sourcefolder.isNull() ? NullVariable.INSTANCE
+	public JavaProjectContentManager(CompactUUID id, Variable projectname, Variable sourcefolder) {
+		this(id, projectname, sourcefolder, sourcefolder.isNull() ? NullVariable.INSTANCE
 				: JavaProjectManager.DEFAULT_OUTPUT_FOLDER_NAME);
 	}
 
@@ -140,8 +145,8 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param hasDefaulSourceFolder
 	 *            the has defaul source folder
 	 */
-	public JavaProjectContentManager(Item item, Variable projectname, boolean hasDefaulSourceFolder) {
-		this(item, projectname, hasDefaulSourceFolder ? JavaProjectManager.DEFAULT_SOURCES_FOLDER_NAME
+	public JavaProjectContentManager(CompactUUID id, Variable projectname, boolean hasDefaulSourceFolder) {
+		this(id, projectname, hasDefaulSourceFolder ? JavaProjectManager.DEFAULT_SOURCES_FOLDER_NAME
 				: NullVariable.INSTANCE, hasDefaulSourceFolder ? JavaProjectManager.DEFAULT_OUTPUT_FOLDER_NAME
 				: NullVariable.INSTANCE);
 	}
@@ -486,4 +491,15 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	public void resolvePackage(Link requirementLink, Item target, Item source, DependencyNature nature,
 			Set<Item> resolved, MultiStatus ms) {
 	}
+	
+	
+	
+	
+	@Override
+	public <T> T internalGetOwnerAttribute(IAttributeType<T> type) {
+		if (type == CadseGCST.JAVA_PROJECT_CONTENT_MODEL_at_HAS_SOURCE_FOLDER_)
+			return (T) new Boolean(!sourcefolder.isNull());
+		return super.internalGetOwnerAttribute(type);
+	}
+	
 }

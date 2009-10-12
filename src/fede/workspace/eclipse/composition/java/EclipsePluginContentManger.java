@@ -50,8 +50,11 @@ import fede.workspace.eclipse.java.manager.JavaProjectContentManager;
 import fede.workspace.eclipse.java.osgi.OsgiManifest;
 import fede.workspace.tool.eclipse.MappingManager;
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CadseGCST;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.IGenerateContent;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.Variable;
@@ -77,8 +80,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param hassourcefolder
 	 *            the hassourcefolder
 	 */
-	public EclipsePluginContentManger(Item item, Variable projectname, boolean hassourcefolder) {
-		super(item, projectname, hassourcefolder);
+	public EclipsePluginContentManger(CompactUUID id, Variable projectname, boolean hassourcefolder) {
+		super(id, projectname, hassourcefolder);
 	}
 
 	/**
@@ -93,9 +96,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param classFolder
 	 *            the class folder
 	 */
-	public EclipsePluginContentManger(Item item, Variable projectname, Variable sourcefolder, Variable classFolder) {
-		super(item, projectname, sourcefolder, classFolder);
-		// TODO Auto-generated constructor stub
+	public EclipsePluginContentManger(CompactUUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
+		super(id, projectname, sourcefolder, classFolder);
 	}
 
 	/**
@@ -108,9 +110,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param sourcefolder
 	 *            the sourcefolder
 	 */
-	public EclipsePluginContentManger(Item item, Variable projectname, Variable sourcefolder) {
-		super(item, projectname, sourcefolder);
-		// TODO Auto-generated constructor stub
+	public EclipsePluginContentManger(CompactUUID id, Variable projectname, Variable sourcefolder) {
+		super(id, projectname, sourcefolder);
 	}
 
 	/**
@@ -371,7 +372,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			((IPDEContributor) o).computeExtenstion(pluginBase, workspacePluginModel);
 		}
 		for (Link l : item.getOutgoingLinks()) {
-			if (l.isPart() && l.isLinkResolved()) {
+			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeExtension(l.getResolvedDestination(), pluginBase, workspacePluginModel);
 			}
 		}
@@ -528,7 +529,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			((IPDEContributor) o).computeImportsPackage(imports);
 		}
 		for (Link l : item.getOutgoingLinks()) {
-			if (l.isPart() && l.isLinkResolved()) {
+			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeManifestImports(l.getResolvedDestination(), imports);
 			}
 		}
@@ -559,9 +560,10 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			((IPDEContributor) o).computeExportsPackage(exports);
 		}
 		for (Link l : item.getOutgoingLinks()) {
-			if (l.isPart() && l.isLinkResolved()) {
+			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeManifestExports(l.getResolvedDestination(), exports);
 			}
 		}
 	}
+	
 }

@@ -42,6 +42,7 @@ import fede.workspace.dependencies.eclipse.java.IJavaItemManager;
 import fede.workspace.eclipse.MelusineProjectManager;
 import fede.workspace.eclipse.content.FileContentManager;
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
@@ -82,8 +83,8 @@ public class JavaFileContentManager extends FileContentManager implements IJavaI
 	 * @param className
 	 *            the class name
 	 */
-	public JavaFileContentManager(ContentItem parent, Item item, Variable packageName, Variable className) {
-		super(parent, item, new ClassVariable(className), new PathFolderVariable(packageName));
+	public JavaFileContentManager(CompactUUID id, Variable packageName, Variable className) {
+		super(id, new ClassVariable(className), new PathFolderVariable(packageName));
 		this.packageName = packageName;
 		this.className = className;
 	}

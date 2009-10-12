@@ -45,6 +45,7 @@ import fede.workspace.eclipse.content.FolderContentManager;
 import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
@@ -74,8 +75,8 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 	 * @param output
 	 *            the output
 	 */
-	public JavaSourceFolderContentManager(ContentItem parent, Item item, Variable path, Variable output) {
-		super(parent, item, path);
+	public JavaSourceFolderContentManager(CompactUUID id, Variable path, Variable output) {
+		super(id, path);
 		this.output = output;
 
 	}
@@ -88,8 +89,8 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 	 * @param item
 	 *            the item
 	 */
-	public JavaSourceFolderContentManager(ContentItem parent, Item item) {
-		super(parent, item, JavaProjectManager.DEFAULT_SOURCES_FOLDER_NAME);
+	public JavaSourceFolderContentManager(CompactUUID id) {
+		super(id, JavaProjectManager.DEFAULT_SOURCES_FOLDER_NAME);
 		this.output = NullVariable.INSTANCE;
 	}
 

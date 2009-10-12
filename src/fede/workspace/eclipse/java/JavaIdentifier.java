@@ -203,6 +203,20 @@ public class JavaIdentifier {
 		return new String[] { value.substring(0, index), value.substring(index+1)};
 	}
 	
+	/**
+	 * Gets the package and class name.
+	 * 
+	 * @param value
+	 *            the value
+	 * 
+	 * @return the package and class name
+	 */
+	public static String getPackageName(String value) {
+		int index = value.lastIndexOf('.');
+		if (index == -1) return "";
+		return value.substring(0, index);
+	}
+	
 	
 	/**
 	 * Gets the lastclass name.

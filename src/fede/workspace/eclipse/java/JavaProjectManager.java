@@ -1342,7 +1342,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 		}
 
 		public boolean isJavaPartTransitive(Link link) {
-			return link.isPart();
+			return link.getLinkType().isPart();
 		}
 
 		public boolean isJavaTransitive(IJavaItemManager javaManager, Link requirementLink) {

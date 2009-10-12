@@ -96,7 +96,7 @@ public class Java {
 							} catch (InterruptedException e) {
 
 							}
-							model = workspaceCU.getLogicalWorkspace();
+							model = getWorkspaceCU().getLogicalWorkspace();
 						}
 						wakeUp();
 					}

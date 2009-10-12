@@ -152,10 +152,10 @@ public class ItemDependenciesClasspathEntry implements IClasspathContainer {
 			return _previousdependencies;
 		}
 		;
-		if (item == null) {
+		if (item == null || !item.isResolved()) {
 			item = logicalWorkspace.getItem(id);
 		}
-		if (item == null) {
+		if (item == null || !item.isResolved()) {
 			WSJavaPlugin.getDefault().log(
 					new Status(Status.ERROR, WSJavaPlugin.PLUGIN_ID, 0, label + " : cannot find item " + id
 							+ " for the item dependencies classpath ", null));

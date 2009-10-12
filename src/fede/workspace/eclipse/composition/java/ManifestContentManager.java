@@ -20,6 +20,7 @@
 package fede.workspace.eclipse.composition.java;
 
 import fede.workspace.eclipse.content.FileContentManager;
+import fr.imag.adele.cadse.core.CompactUUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.impl.var.StringVariable;
 
@@ -39,8 +40,8 @@ public class ManifestContentManager extends FileContentManager {
 	 * @param item
 	 *            the item
 	 */
-	public ManifestContentManager(EclipsePluginContentManger parent, Item item) {
-		super(parent, item, new StringVariable("MANIFEST.MF"), new StringVariable("META-INF/") );
+	public ManifestContentManager(CompactUUID id) {
+		super(id, new StringVariable("MANIFEST.MF"), new StringVariable("META-INF/") );
 	}
 	
 }
