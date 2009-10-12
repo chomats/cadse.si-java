@@ -1227,7 +1227,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 		 * Mark an error on the root item, in cases we are not able to resolve
 		 * the dependency
 		 */
-		if (targetItem == null) {
+		if (targetItem == null || !targetItem.isResolved()) {
 
 			ms.add(new Status(Status.ERROR, WSJavaPlugin.PLUGIN_ID, 0, MessageFormat.format(
 					"Item dependencies of {1}, classpath resolution error : "

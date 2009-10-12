@@ -227,12 +227,9 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @return the java source element
 	 */
 	public IPackageFragmentRoot getJavaSourceElement(ContextVariable cxt) {
-		if (cxt.isGenerated())
-			return getGeneratedJavaSourceElement(cxt);
-			
 		if (!sourcefolder.isNull()) {
 
-			IFolder source = getProject(cxt).getFolder(sourcefolder.compute(cxt, getItem()));
+			IFolder source = getProject(cxt).getFolder(sourcefolder.compute(cxt, getOwnerItem()));
 			IJavaProject jp = getJavaProject(cxt);
 			if (jp != null) {
 				return jp.getPackageFragmentRoot(source);
@@ -241,22 +238,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 		return null;
 	}
 	
-	/**
-	 * Gets the java source element.
-	 * 
-	 * @param cxt
-	 *            the cxt
-	 * 
-	 * @return the java source element
-	 */
-	public IPackageFragmentRoot getGeneratedJavaSourceElement(ContextVariable cxt) {
-		IFolder source = getProject(cxt).getFolder("src-gen");
-		IJavaProject jp = getJavaProject(cxt);
-		if (jp != null) {
-			return jp.getPackageFragmentRoot(source);
-		}
-		return null;
-	}
+	
 
 	/*
 	 * (non-Javadoc)
