@@ -24,8 +24,8 @@ import org.eclipse.swt.SWT;
 
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IModelController;
+import fr.imag.adele.cadse.ui.field.core.FieldsCore;
 import fede.workspace.eclipse.java.manager.JarContentManager;
-import fede.workspace.model.manager.properties.FieldsCore;
 import fede.workspace.model.manager.properties.impl.mc.StringToOneResourceModelController;
 import fede.workspace.model.manager.properties.impl.mc.StringToResourceListModelController;
 import fede.workspace.model.manager.properties.impl.ui.DBrowserUI;
