@@ -411,28 +411,6 @@ public class JavaProjectManager extends MelusineProjectManager {
 	}
 
 	/**
-	 * Creates the java source folder.
-	 * 
-	 * @param item
-	 *            the item
-	 * @param specificOutputFolder
-	 *            the specific output folder
-	 * @param monitor
-	 *            the monitor
-	 * 
-	 * @throws CoreException
-	 *             the core exception
-	 */
-	public static void createJavaSourceFolder(Item item, IFolder specificOutputFolder, IProgressMonitor monitor)
-			throws CoreException {
-		IFolder sourceFolder = getDefaultSourceFolder(item);
-		if (sourceFolder == null) {
-			return;
-		}
-
-	}
-
-	/**
 	 * Adds the source folder associated with the item to the source entries in
 	 * the classpath of the java project.
 	 * 
