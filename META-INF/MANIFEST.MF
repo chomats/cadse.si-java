@@ -33,16 +33,14 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Bundle-Vendor.0
 ipojo-auto-start: true
 Bundle-Version: 2.2.1.qualifier
-Bundle-ManifestVersion: 2
 Bundle-Activator: fede.workspace.eclipse.java.WSJavaPlugin
+Bundle-ManifestVersion: 2
 Bundle-Description: Bundle fr.imag.adele.cadse.si.workspace.java
-Bundle-SymbolicName: fr.imag.adele.cadse.si.workspace.java;singleton:=
- true
 Import-Package: fr.imag.adele.cadse.core.impl;version=2.2.1, fede.work
  space.dependencies.eclipse.java;version=2.2.1, fr.imag.adele.cadse.co
  re.delta;version=2.2.1, fede.workspace.tool.view;version=1.0.0, org.e
- clipse.core.commands, fede.workspace.tool.eclipse;version=1.0.0, org.
- eclipse.jdt.internal.corext.refactoring.changes, org.eclipse.core.run
+ clipse.jdt.internal.corext.refactoring.changes, fede.workspace.tool.e
+ clipse;version=1.0.0, org.eclipse.core.commands, org.eclipse.core.run
  time.preferences, fede.workspace.eclipse.java.osgi;version=2.2.1, fed
  e.workspace.model.manager.properties;version=1.0.0, fr.imag.adele.cad
  se.core.util;version=2.2.1, fede.workspace.model.manager.properties.i
@@ -53,19 +51,19 @@ Import-Package: fr.imag.adele.cadse.core.impl;version=2.2.1, fede.work
  .text.source, org.eclipse.jdt.internal.ui.javaeditor, org.eclipse.emf
  .codegen.jet, fr.imag.adele.fede.workspace.si.java;version=2.2.1, fr.
  imag.adele.cadse.ui.field.core, fr.imag.adele.cadse.core.impl.interna
- l;version=2.2.1, org.eclipse.swt.layout, fr.imag.adele.fede.workspace
- .as.platformeclipse;version=1.0.0, org.eclipse.jdt.ui.text.java, fede
- .workspace.eclipse.exporter;version=1.0.0, org.eclipse.jdt.core, org.
- eclipse.swt.graphics, org.eclipse.jdt.core.compiler, org.eclipse.jdt.
- internal.corext.util, org.eclipse.osgi.service.resolver;version=1.1.0
+ l;version=2.2.1, fr.imag.adele.fede.workspace.as.platformeclipse;vers
+ ion=1.0.0, org.eclipse.swt.layout, org.eclipse.jdt.ui.text.java, org.
+ eclipse.jdt.core, fede.workspace.eclipse.exporter;version=1.0.0, org.
+ eclipse.swt.graphics, org.eclipse.jdt.core.compiler, org.eclipse.osgi
+ .service.resolver;version=1.1.0, org.eclipse.jdt.internal.corext.util
  , org.eclipse.jface.text.source.projection, org.eclipse.jface.text, o
  rg.eclipse.ui.handlers, org.eclipse.core.runtime, fede.workspace.ecli
  pse.composition.java;version=2.2.1, org.eclipse.jdt.ui, fede.workspac
  e.eclipse.java.mapping;version=2.2.1, org.eclipse.pde.internal.core, 
  org.eclipse.jdt.core.dom, org.eclipse.jdt.internal.ui.wizards.buildpa
- ths, org.eclipse.pde.internal.core.natures, org.eclipse.jdt.core.sear
- ch, org.eclipse.jface.viewers, org.eclipse.ui.dialogs, org.eclipse.jd
- t.core.formatter, org.eclipse.ui.texteditor, org.eclipse.pde.internal
+ ths, org.eclipse.pde.internal.core.natures, org.eclipse.jface.viewers
+ , org.eclipse.jdt.core.search, org.eclipse.jdt.core.formatter, org.ec
+ lipse.ui.dialogs, org.eclipse.ui.texteditor, org.eclipse.pde.internal
  .core.plugin, org.eclipse.swt, org.eclipse.pde.core.plugin, org.eclip
  se.jdt.ui.text, org.eclipse.jdt.internal.corext.refactoring, adele.ut
  il.io;version=1.0.0, org.eclipse.osgi.util;version=1.1.0, fede.worksp
@@ -92,15 +90,17 @@ Import-Package: fr.imag.adele.cadse.core.impl;version=2.2.1, fede.work
  ependencies.eclipse.java.fix;version=2.2.1, fede.workspace.eclipse.ja
  va.mc;version=2.2.1, org.eclipse.core.resources, org.eclipse.jdt.inte
  rnal.ui.wizards, org.eclipse.osgi.framework.util, org.eclipse.debug.c
- ore, fede.workspace.eclipse.composer;version=1.0.0, fede.workspace.ec
- lipse.java.manager;version=2.2.1, org.eclipse.emf.common.util, org.ec
+ ore, fede.workspace.eclipse.java.manager;version=2.2.1, fede.workspac
+ e.eclipse.composer;version=1.0.0, org.eclipse.emf.common.util, org.ec
  lipse.swt.events, fr.imag.adele.fede.workspace.si.view;version=1.0.0,
-  fede.workspace.dependencies.eclipse.java.view;version=2.2.1, org.ecl
- ipse.jface.text.contentassist, org.eclipse.jdt.internal.ui.text.java,
-  org.apache.felix.ipojo.architecture;version=1.2.0, fede.workspace.mo
- del.manager.properties.impl.ui;version=1.0.0, fr.imag.adele.cadse.cor
- e.impl.var;version=2.2.1, org.eclipse.jdt.internal.ui.text.template.c
- ontentassist, org.eclipse.jface.util, org.eclipse.swt.widgets, fede.w
- orkspace.eclipse.java;version=2.2.1, org.eclipse.jdt.internal.corext.
- dom, fede.workspace.eclipse;version=1.0.0, org.eclipse.jface.dialogs
+  org.eclipse.jface.text.contentassist, fede.workspace.dependencies.ec
+ lipse.java.view;version=2.2.1, org.eclipse.jdt.internal.ui.text.java,
+  fede.workspace.model.manager.properties.impl.ui;version=1.0.0, org.a
+ pache.felix.ipojo.architecture;version=1.2.0, fr.imag.adele.cadse.cor
+ e.impl.var;version=2.2.1, org.eclipse.jface.util, org.eclipse.jdt.int
+ ernal.ui.text.template.contentassist, fede.workspace.eclipse.java;ver
+ sion=2.2.1, org.eclipse.swt.widgets, org.eclipse.jdt.internal.corext.
+ dom, org.eclipse.jface.dialogs, fede.workspace.eclipse;version=1.0.0
+Bundle-SymbolicName: fr.imag.adele.cadse.si.workspace.java;singleton:=
+ true
 

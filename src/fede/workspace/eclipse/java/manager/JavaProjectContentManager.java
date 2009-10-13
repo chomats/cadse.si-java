@@ -76,12 +76,12 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	private final class JavaProjectWorkspaceListener extends WorkspaceListener {
 		@Override
 		public void workspaceChanged(ImmutableWorkspaceDelta delta) {
-			ImmutableItemDelta itemDelta = delta.getItem(getItem());
+			ImmutableItemDelta itemDelta = delta.getItem(getOwnerItem());
 			if (itemDelta != null
 					&& (itemDelta.hasRemovedOutgoingLink() || itemDelta.hasUnresolvedOutgoingLink()
 							|| itemDelta.hasAddedOutgoingLink() || itemDelta.hasResolvedOutgoingLink())) {
 				try {
-					JavaProjectManager.updateItemDependenciesClasspath(getItem(), EclipseTool.getDefaultMonitor());
+					JavaProjectManager.updateItemDependenciesClasspath(getOwnerItem(), EclipseTool.getDefaultMonitor());
 				} catch (CoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -164,7 +164,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 
 	protected void initUpdaterClaspathListener() {
 		wsListener = new JavaProjectWorkspaceListener();
-		getItem().getLogicalWorkspace().addListener(
+		getOwnerItem().getLogicalWorkspace().addListener(
 				wsListener,
 				ChangeID.toFilter(ChangeID.CREATE_OUTGOING_LINK, ChangeID.DELETE_OUTGOING_LINK,
 						ChangeID.UNRESOLVE_INCOMING_LINK));
