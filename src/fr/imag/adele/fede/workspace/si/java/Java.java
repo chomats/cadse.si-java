@@ -55,6 +55,8 @@ public class Java {
 	 */
 	IPlatformEclipse	platformEclipse;
 
+	protected JobReloadClassPathMapping j;
+
 	/**
 	 * The Class JobInitMapping.
 	 * 
@@ -84,13 +86,17 @@ public class Java {
 			super("init java class path");
 		}
 
-		public void testworkspaceToSleep() {
+		public void testworkspaceToSleep(final IProgressMonitor monitor) {
+			if (monitor.isCanceled())
+				return ;
 			model = getWorkspaceCU().getLogicalWorkspace();
 			if (model == null) {
 				new Thread() {
 					@Override
 					public void run() {
 						while (model == null) {
+							if (monitor.isCanceled())
+								return ;
 							try {
 								sleep(5000);
 							} catch (InterruptedException e) {
@@ -103,6 +109,9 @@ public class Java {
 				}.start();
 				sleep();
 			}
+			if (monitor.isCanceled())
+				return ;
+			
 			if (model.getState() != WSModelState.RUN) {
 				model.addListener(new UpdateClasspathLaterL(), ChangeID.toFilter(ChangeID.MODEL_STATE));
 				sleep();
@@ -116,10 +125,16 @@ public class Java {
 		 */
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
-			testworkspaceToSleep();
+			if (monitor.isCanceled())
+				return Status.OK_STATUS;
+			testworkspaceToSleep(monitor);
+			if (monitor.isCanceled())
+				return Status.OK_STATUS;
 			Map<IJavaProject, IClasspathContainer> toset = new HashMap<IJavaProject, IClasspathContainer>();
 			for (Item item : model.getItems()) {
 				try {
+					if (monitor.isCanceled())
+						return Status.OK_STATUS;
 					IJavaProject jp = item.getMainMappingContent(IJavaProject.class); // force
 					// to
 					// load
@@ -169,11 +184,17 @@ public class Java {
 
 				getPlatformEclipse().getLocation(true);
 
-				JobReloadClassPathMapping j = new JobReloadClassPathMapping();
+				j = new JobReloadClassPathMapping();
 				j.schedule(5000);
 			}
 		};
 		new Thread(r, "Start java").start();
+	}
+	
+	public void stop() {
+		if (j != null)
+			j.cancel();
+		
 	}
 
 	public IPlatformEclipse getPlatformEclipse() {
