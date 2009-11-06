@@ -23,8 +23,8 @@ package fede.workspace.eclipse.java.fields;
 import org.eclipse.swt.SWT;
 
 import fr.imag.adele.cadse.core.ui.EPosLabel;
-import fr.imag.adele.cadse.core.ui.IModelController;
-import fr.imag.adele.cadse.ui.field.core.FieldsCore;
+import fr.imag.adele.cadse.core.ui.RunningModelController;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.FieldsCore;
 import fede.workspace.eclipse.java.manager.JarContentManager;
 import fede.workspace.model.manager.properties.impl.mc.StringToOneResourceModelController;
 import fede.workspace.model.manager.properties.impl.mc.StringToResourceListModelController;
@@ -193,7 +193,7 @@ public class JavaFieldsCore extends FieldsCore {
 	 * @return the java source viewer field
 	 */
 	static public JavaSourceViewerField createJavaSourceField(
-			String key, String label, IModelController mc, JavaSourceInteractifController ic) {
+			String key, String label, RunningModelController mc, JavaSourceInteractifController ic) {
 		return new JavaSourceViewerField(key, label, EPosLabel.top, 
 				mc, 
 				ic);

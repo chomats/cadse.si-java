@@ -56,7 +56,7 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
-import fr.imag.adele.cadse.core.ui.IModelController;
+import fr.imag.adele.cadse.core.ui.RunningModelController;
 import fr.imag.adele.cadse.core.ui.IPageController;
 
 /**
@@ -83,7 +83,7 @@ public class MethodField extends DAbstractField {
 	 * @param ic
 	 *            the ic
 	 */
-	public MethodField(String key, String label, EPosLabel poslabel, IModelController mc,
+	public MethodField(String key, String label, EPosLabel poslabel, RunningModelController mc,
 			IMethodInteractiveController ic) {
 		super(key, label, poslabel, mc, ic);
 		methodInteractiveController = ic;

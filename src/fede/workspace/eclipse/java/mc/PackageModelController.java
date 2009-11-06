@@ -23,8 +23,8 @@ package fede.workspace.eclipse.java.mc;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
 
-import fr.imag.adele.cadse.core.impl.ui.MC_AttributesItem;
-import fr.imag.adele.cadse.core.ui.IModelController;
+import fr.imag.adele.cadse.core.impl.ui.mc.MC_AttributesItem;
+import fr.imag.adele.cadse.core.ui.RunningModelController;
 import fr.imag.adele.cadse.core.ui.IPageController;
 import fr.imag.adele.cadse.core.ui.UIField;
 
@@ -35,7 +35,7 @@ import fr.imag.adele.cadse.core.ui.UIField;
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
 public final class PackageModelController extends MC_AttributesItem implements
-		IModelController {
+		RunningModelController {
 
 	/** The Constant java_version. */
 	private static final String java_version = "1.3";

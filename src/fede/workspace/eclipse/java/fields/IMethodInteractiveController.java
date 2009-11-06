@@ -22,13 +22,13 @@ package fede.workspace.eclipse.java.fields;
 import org.eclipse.jdt.core.IPackageFragment;
 
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ui.IInteractionController;
+import fr.imag.adele.cadse.core.ui.RuningInteractionController;
 
 
 /**
  * The Interface IMethodInteractiveController.
  */
-public interface IMethodInteractiveController extends IInteractionController {
+public interface IMethodInteractiveController extends RuningInteractionController {
 
 	/**
 	 * Gets the referenced item.

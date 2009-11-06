@@ -21,7 +21,7 @@ package fede.workspace.eclipse.java.fields;
 
 import org.eclipse.jdt.core.IJavaProject;
 
-import fr.imag.adele.cadse.core.ui.IInteractionController;
+import fr.imag.adele.cadse.core.ui.RuningInteractionController;
 
 
 
@@ -29,7 +29,7 @@ import fr.imag.adele.cadse.core.ui.IInteractionController;
 /**
  * The Interface JavaSourceInteractifController.
  */
-public interface JavaSourceInteractifController extends  IInteractionController {
+public interface JavaSourceInteractifController extends  RuningInteractionController {
 	
 	/**
 	 * Gets the java project.

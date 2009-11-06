@@ -35,7 +35,7 @@ import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.eclipse.java.WSJavaPlugin;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.impl.ui.MC_AttributesItem;
+import fr.imag.adele.cadse.core.impl.ui.mc.MC_AttributesItem;
 import fr.imag.adele.cadse.core.ui.UIField;
 
 /**

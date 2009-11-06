@@ -102,7 +102,7 @@ import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
-import fr.imag.adele.cadse.core.ui.IModelController;
+import fr.imag.adele.cadse.core.ui.RunningModelController;
 import fr.imag.adele.cadse.core.ui.IPageController;
 
 /**
@@ -182,7 +182,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @param ic
 	 *            the ic
 	 */
-	public JavaSourceViewerField(String key, String label, EPosLabel poslabel, IModelController mc,
+	public JavaSourceViewerField(String key, String label, EPosLabel poslabel, RunningModelController mc,
 			JavaSourceInteractifController ic) {
 		super(key, label, poslabel, mc, ic);
 		this.ic = ic;

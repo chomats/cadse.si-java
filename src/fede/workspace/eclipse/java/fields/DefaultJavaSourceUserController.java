@@ -25,8 +25,8 @@ import org.eclipse.jdt.core.JavaCore;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.core.impl.ui.ic.IC_Abstract;
 import fede.workspace.eclipse.MelusineProjectManager;
-import fede.workspace.model.manager.properties.impl.ic.IC_Abstract;
 
 
 /**
