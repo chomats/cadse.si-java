@@ -172,18 +172,18 @@ public class JavaElementTreeController extends IC_AbstractTreeDialogForList_Brow
 	 *             the java model exception
 	 */
 	protected boolean selectFragmentRoot(IPackageFragmentRoot pfr) throws JavaModelException {
-		String attrName = (String) getUIField().getLocal("package-select-attribut-jar");
-		if (attrName != null) {
-			Item theItem = getItem();
-			Object jarListObj = theItem.getAttribute(attrName);
-			if (jarListObj instanceof List) {
-				List<String> jarList = (List<String>) jarListObj;
-				if (jarList.contains(pfr.getElementName())) {
-					return true;
-				}
-
-			}
-		}
+//		String attrName = (String) getUIField().getLocal("package-select-attribut-jar");
+//		if (attrName != null) {
+//			Item theItem = getItem();
+//			Object jarListObj = theItem.getAttribute(attrName);
+//			if (jarListObj instanceof List) {
+//				List<String> jarList = (List<String>) jarListObj;
+//				if (jarList.contains(pfr.getElementName())) {
+//					return true;
+//				}
+//
+//			}
+//		}
 
 		if (pfr.getKind() == IPackageFragmentRoot.K_BINARY) {
 			return false;
