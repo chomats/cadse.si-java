@@ -55,11 +55,11 @@ public final class PackageModelController extends MC_AttributesItem implements
 		String p = (String) value;
 		IStatus error = JavaConventions.validatePackageName(p,java_version,java_version);
 		if (error.getSeverity() == IStatus.ERROR) {
-			setMessageError(error.getMessage());
+			_uiPlatform.setMessageError(error.getMessage());
 			return true;
 		}
 		if (error.getSeverity() == IStatus.WARNING) {
-			getUIField().getPageController().setMessage(error.getMessage(),UIPlatform.WARNING);
+			_uiPlatform.setMessage(error.getMessage(),UIPlatform.WARNING);
 			
 		}
 		return super.validValueChanged(field, value);

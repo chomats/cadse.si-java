@@ -23,6 +23,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.JavaCore;
 
 import fr.imag.adele.cadse.core.CompactUUID;
+import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.impl.ui.mc.MC_AttributesItem;
 import fr.imag.adele.cadse.core.ui.UIField;
 
@@ -33,7 +34,7 @@ import fr.imag.adele.cadse.core.ui.UIField;
  */
 public class MC_StringToJavaElement extends MC_AttributesItem {
 
-	public MC_StringToJavaElement(CompactUUID id) {
+	public MC_StringToJavaElement(Item id) {
 		super(id);
 	}
 

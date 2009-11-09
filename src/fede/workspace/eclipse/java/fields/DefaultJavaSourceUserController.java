@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
-import fr.imag.adele.cadse.core.impl.ui.ic.IC_Abstract;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.ICRunningField;
 import fede.workspace.eclipse.MelusineProjectManager;
 
 
@@ -34,20 +34,15 @@ import fede.workspace.eclipse.MelusineProjectManager;
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-final public class DefaultJavaSourceUserController extends IC_Abstract implements JavaSourceInteractifController {
+final public class DefaultJavaSourceUserController extends ICRunningField implements JavaSourceInteractifController {
 	
 	/* (non-Javadoc)
 	 * @see fede.workspace.eclipse.java.fields.JavaSourceInteractifController#getJavaProject()
 	 */
 	public IJavaProject getJavaProject() {
-		Item parentItem = getParentItem();
+		Item parentItem = getItem().getPartParent();
 		IProject p = MelusineProjectManager.getProject(parentItem);
 	    IJavaProject jp = JavaCore.create(p);
 	    return jp;
-	}
-
-	public ItemType getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -50,24 +50,15 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 
-import fede.workspace.model.manager.properties.impl.ui.DAbstractField;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
-import fr.imag.adele.cadse.core.ui.EPosLabel;
-import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
-import fr.imag.adele.cadse.core.ui.RunningModelController;
-import fr.imag.adele.cadse.core.ui.UIPlatform;
-
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ui.DAbstractField;
 /**
  * The Class MethodField.
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class MethodField extends DAbstractField {
-
-	/** The method interactive controller. */
-	IMethodInteractiveController	methodInteractiveController;
+public class MethodField<IC extends IMethodInteractiveController> extends DAbstractField<IC> {
 
 	/**
 	 * Instantiates a new method field.
@@ -83,10 +74,7 @@ public class MethodField extends DAbstractField {
 	 * @param ic
 	 *            the ic
 	 */
-	public MethodField(String key, String label, EPosLabel poslabel, RunningModelController mc,
-			IMethodInteractiveController ic) {
-		super(key, label, poslabel, mc, ic);
-		methodInteractiveController = ic;
+	public MethodField() {
 	}
 
 	/** The JAV a_ elemen t_ labe l_ provider. */
@@ -109,8 +97,7 @@ public class MethodField extends DAbstractField {
 	 *      fr.imag.adele.cadse.core.ui.IFedeFormToolkit, java.lang.Object, int)
 	 */
 	@Override
-	public Object createControl(final UIPlatform globalUIController, IFedeFormToolkit toolkit, Object container,
-			int hspan) {
+	public void createControl(Composite container,	int hspan) {
 		GridData gd;
 		packageTable = new Tree((Composite) container, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -128,7 +115,7 @@ public class MethodField extends DAbstractField {
 				IMethod oldm = methodSelected;
 				handleSelect();
 				if (oldm != methodSelected) {
-					globalUIController.broadcastValueChanged(MethodField.this, getVisualValue());
+					_swtuiplatform.broadcastValueChanged(_page, _field, getVisualValue());
 				}
 
 			}
@@ -137,7 +124,6 @@ public class MethodField extends DAbstractField {
 		gd.verticalSpan = 1;
 		gd.horizontalSpan = 1;
 		selectButton.setLayoutData(gd);
-		return container;
 	}
 
 	/*
@@ -148,16 +134,6 @@ public class MethodField extends DAbstractField {
 	@Override
 	public void thisFieldHasChanged() {
 		selectButton.setEnabled(getReferencedItem() != null);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ui.UIField#getUIObject(int)
-	 */
-	@Override
-	public Object getUIObject(int index) {
-		return packageTable;
 	}
 
 	/**
@@ -382,7 +358,7 @@ public class MethodField extends DAbstractField {
 		if (_referencedItem == null) {
 			return null;
 		}
-		return methodInteractiveController.getPackageFragment(_referencedItem);
+		return _ic.getPackageFragment(_referencedItem);
 	}
 
 	/**
@@ -391,7 +367,7 @@ public class MethodField extends DAbstractField {
 	 * @return the referenced item
 	 */
 	protected Item getReferencedItem() {
-		return methodInteractiveController.getReferencedItem();
+		return _ic.getReferencedItem();
 	}
 
 	/**
@@ -416,7 +392,7 @@ public class MethodField extends DAbstractField {
 	 * @see fr.imag.adele.cadse.core.ui.UIField#setEditable(boolean)
 	 */
 	@Override
-	public void internalSetEditable(boolean v) {
+	public void setEditable(boolean v) {
 	}
 
 	/*
@@ -425,22 +401,7 @@ public class MethodField extends DAbstractField {
 	 * @see fede.workspace.model.manager.properties.impl.ui.DAbstractField#setVisible(boolean)
 	 */
 	@Override
-	public void internalSetVisible(boolean v) {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ui.UIField#getHSpan()
-	 */
-	@Override
-	public int getHSpan() {
-		return 2;
-	}
-
-	public ItemType getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setVisible(boolean v) {
 	}
 
 	@Override

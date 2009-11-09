@@ -32,7 +32,7 @@ import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-import fede.workspace.model.manager.properties.impl.ic.IC_ResourceTreeDialogForBrowser_Combo_List;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_ResourceTreeDialogForBrowser_Combo_List;
 
 
 
@@ -42,7 +42,8 @@ import fede.workspace.model.manager.properties.impl.ic.IC_ResourceTreeDialogForB
 
 
 public class IC_JarResourceForBrowser_Combo_List  extends IC_ResourceTreeDialogForBrowser_Combo_List {
-	 
+	public IC_JarResourceForBrowser_Combo_List() {
+	}
     
 	
 	

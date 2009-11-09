@@ -39,9 +39,9 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
-import fr.imag.adele.cadse.core.impl.ui.ic.IC_Abstract;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.ICRunningField;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_ForBrowserOrCombo;
 import fede.workspace.eclipse.MelusineProjectManager;
-import fede.workspace.model.manager.properties.IInteractionControllerForBrowserOrCombo;
 
 /**
  * String java-style-filter, default "" int java-style-search, default
@@ -57,7 +57,7 @@ import fede.workspace.model.manager.properties.IInteractionControllerForBrowserO
  * not supported. String title-select, default "??".
  */
 
-public class IC_JavaClassForBrowser_Combo extends IC_Abstract implements IInteractionControllerForBrowserOrCombo {
+public class IC_JavaClassForBrowser_Combo extends ICRunningField implements IC_ForBrowserOrCombo {
 
 	/** The title. */
 	private String	title;
@@ -71,6 +71,9 @@ public class IC_JavaClassForBrowser_Combo extends IC_Abstract implements IIntera
 	/** The filter. */
 	private String	filter;
 
+	public IC_JavaClassForBrowser_Combo() {
+	}
+	
 	/**
 	 * The Constructor.
 	 * 
@@ -208,7 +211,7 @@ public class IC_JavaClassForBrowser_Combo extends IC_Abstract implements IIntera
 	 * @return the project
 	 */
 	protected IProject getProject() {
-		Item currentItem = getItem();
+		Item currentItem = _uiPlatform.getItem(getUIField());
 		return MelusineProjectManager.getProject(currentItem);
 	}
 

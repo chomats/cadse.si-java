@@ -97,18 +97,21 @@ import org.eclipse.ui.texteditor.DefaultMarkerAnnotationAccess;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.MarkerAnnotationPreferences;
 
-import fede.workspace.model.manager.properties.impl.ui.DAbstractField;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ui.DAbstractField;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
+import fr.imag.adele.cadse.core.ui.RuningInteractionController;
 import fr.imag.adele.cadse.core.ui.RunningModelController;
+import fr.imag.adele.cadse.core.ui.UIField;
 import fr.imag.adele.cadse.core.ui.UIPlatform;
 
 /**
  * A dialog which prompts the user to enter an expression for evaluation.
  */
-public class JavaSourceViewerField extends DAbstractField {
+
+public class JavaSourceViewerField<IC extends JavaSourceInteractifController> extends DAbstractField<IC> {
 
 	/** The width of the vertical ruler. */
 	protected final static int				VERTICAL_RULER_WIDTH	= 12;
@@ -135,9 +138,6 @@ public class JavaSourceViewerField extends DAbstractField {
 
 	/** The document. */
 	IDocument								document;
-
-	/** The ic. */
-	JavaSourceInteractifController			ic;
 
 	/** The vertical ruler. */
 	private IVerticalRuler					fVerticalRuler;
@@ -182,10 +182,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @param ic
 	 *            the ic
 	 */
-	public JavaSourceViewerField(String key, String label, EPosLabel poslabel, RunningModelController mc,
-			JavaSourceInteractifController ic) {
-		super(key, label, poslabel, mc, ic);
-		this.ic = ic;
+	public JavaSourceViewerField() {
 	}
 
 	/*
@@ -195,7 +192,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 *      fr.imag.adele.cadse.core.ui.IFedeFormToolkit, java.lang.Object, int)
 	 */
 	@Override
-	public Composite createControl(UIPlatform globalUIController, IFedeFormToolkit toolkit, Object parent,
+	public void createControl(Composite parent,
 			int hspan) {
 
 		fInputArea = new Composite((Composite) parent, SWT.NONE);
@@ -214,11 +211,10 @@ public class JavaSourceViewerField extends DAbstractField {
 		int styles = SWT.V_SCROLL | SWT.H_SCROLL | SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION;
 		fSourceViewer = createSourceViewer(fInputArea, fVerticalRuler, styles);
 
-		configureSourceViewer(globalUIController);
+		configureSourceViewer();
 
 		((JavaSourceViewer) fSourceViewer).doOperation(ITextOperationTarget.SELECT_ALL);
 
-		return fInputArea;
 	}
 
 	/*
@@ -384,7 +380,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @param globalUIController
 	 *            the global ui controller
 	 */
-	private void configureSourceViewer(final UIPlatform globalUIController) {
+	private void configureSourceViewer() {
 
 		// if (fConfiguration == null)
 		// fConfiguration= new SourceViewerConfiguration();
@@ -408,7 +404,7 @@ public class JavaSourceViewerField extends DAbstractField {
 		undoManager.connect(fSourceViewer);
 
 		fSourceViewer.getTextWidget().setFont(JFaceResources.getTextFont());
-		fSourceViewer.getTextWidget().setData(CADSE_MODEL_KEY, this);
+		fSourceViewer.getTextWidget().setData(UIField.CADSE_MODEL_KEY, _field);
 
 		Control control = ((SourceViewer) fSourceViewer).getControl();
 		GridData gd = new GridData(GridData.FILL_BOTH);
@@ -425,7 +421,7 @@ public class JavaSourceViewerField extends DAbstractField {
 			}
 
 			public void documentChanged(DocumentEvent event) {
-				globalUIController.broadcastValueChanged(JavaSourceViewerField.this, getVisualValue());
+				_swtuiplatform.broadcastValueChanged(_page, _field, getVisualValue());
 			}
 		};
 		fSourceViewer.getDocument().addDocumentListener(fDocumentListener);
@@ -468,7 +464,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @return the java project
 	 */
 	protected IJavaProject getJavaProject() {
-		return ic.getJavaProject();
+		return _ic.getJavaProject();
 	}
 
 	/**
@@ -630,16 +626,6 @@ public class JavaSourceViewerField extends DAbstractField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fr.imag.adele.cadse.core.ui.UIField#getHSpan()
-	 */
-	@Override
-	public int getHSpan() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see fr.imag.adele.cadse.core.ui.UIField#setEnabled(boolean)
 	 */
 	@Override
@@ -653,7 +639,8 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @see fr.imag.adele.cadse.core.ui.UIField#setEditable(boolean)
 	 */
 	@Override
-	public void internalSetEditable(boolean v) {
+	public void setEditable(boolean v) {
+		super.setEditable(v);
 		fSourceViewer.setEditable(v);
 	}
 
@@ -663,23 +650,9 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @see fede.workspace.model.manager.properties.impl.ui.DAbstractField#setVisible(boolean)
 	 */
 	@Override
-	public void internalSetVisible(boolean v) {
+	public void setVisible(boolean v) {
+		super.setVisible(v);
 		((SourceViewer) fSourceViewer).getControl().setVisible(v);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ui.UIField#getUIObject(int)
-	 */
-	@Override
-	public Object getUIObject(int index) {
-		return fSourceViewer;
-	}
-
-	public ItemType getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

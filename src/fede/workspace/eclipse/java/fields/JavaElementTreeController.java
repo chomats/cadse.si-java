@@ -38,10 +38,10 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 import fede.workspace.eclipse.java.JavaProjectManager;
-import fede.workspace.model.manager.properties.impl.ic.IC_AbstractTreeDialogForList_Browser_Combo;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_AbstractTreeDialogForList_Browser_Combo;
 
 /**
  * String package-select-attribut-jar : le nom d'un attribut de l'item contenant
@@ -51,6 +51,8 @@ import fr.imag.adele.cadse.core.ItemType;
  */
 public class JavaElementTreeController extends IC_AbstractTreeDialogForList_Browser_Combo {
 
+	public JavaElementTreeController() {
+	}
 	/**
 	 * Instantiates a new java element tree controller.
 	 * 
@@ -115,6 +117,7 @@ public class JavaElementTreeController extends IC_AbstractTreeDialogForList_Brow
 		return packages;
 	}
 
+	
 	/**
 	 * Gets the package fragment root.
 	 * 
