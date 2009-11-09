@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.JavaConventions;
 
 import fr.imag.adele.cadse.core.impl.ui.mc.MC_AttributesItem;
 import fr.imag.adele.cadse.core.ui.RunningModelController;
-import fr.imag.adele.cadse.core.ui.IPageController;
+import fr.imag.adele.cadse.core.ui.UIPlatform;
 import fr.imag.adele.cadse.core.ui.UIField;
 
 
@@ -59,7 +59,7 @@ public final class PackageModelController extends MC_AttributesItem implements
 			return true;
 		}
 		if (error.getSeverity() == IStatus.WARNING) {
-			getUIField().getPageController().setMessage(error.getMessage(),IPageController.WARNING);
+			getUIField().getPageController().setMessage(error.getMessage(),UIPlatform.WARNING);
 			
 		}
 		return super.validValueChanged(field, value);

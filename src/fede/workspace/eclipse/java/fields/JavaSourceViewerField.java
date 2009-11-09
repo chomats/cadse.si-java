@@ -103,7 +103,7 @@ import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
 import fr.imag.adele.cadse.core.ui.RunningModelController;
-import fr.imag.adele.cadse.core.ui.IPageController;
+import fr.imag.adele.cadse.core.ui.UIPlatform;
 
 /**
  * A dialog which prompts the user to enter an expression for evaluation.
@@ -195,7 +195,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 *      fr.imag.adele.cadse.core.ui.IFedeFormToolkit, java.lang.Object, int)
 	 */
 	@Override
-	public Composite createControl(IPageController globalUIController, IFedeFormToolkit toolkit, Object parent,
+	public Composite createControl(UIPlatform globalUIController, IFedeFormToolkit toolkit, Object parent,
 			int hspan) {
 
 		fInputArea = new Composite((Composite) parent, SWT.NONE);
@@ -384,7 +384,7 @@ public class JavaSourceViewerField extends DAbstractField {
 	 * @param globalUIController
 	 *            the global ui controller
 	 */
-	private void configureSourceViewer(final IPageController globalUIController) {
+	private void configureSourceViewer(final UIPlatform globalUIController) {
 
 		// if (fConfiguration == null)
 		// fConfiguration= new SourceViewerConfiguration();

@@ -57,7 +57,7 @@ import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.ui.EPosLabel;
 import fr.imag.adele.cadse.core.ui.IFedeFormToolkit;
 import fr.imag.adele.cadse.core.ui.RunningModelController;
-import fr.imag.adele.cadse.core.ui.IPageController;
+import fr.imag.adele.cadse.core.ui.UIPlatform;
 
 /**
  * The Class MethodField.
@@ -109,7 +109,7 @@ public class MethodField extends DAbstractField {
 	 *      fr.imag.adele.cadse.core.ui.IFedeFormToolkit, java.lang.Object, int)
 	 */
 	@Override
-	public Object createControl(final IPageController globalUIController, IFedeFormToolkit toolkit, Object container,
+	public Object createControl(final UIPlatform globalUIController, IFedeFormToolkit toolkit, Object container,
 			int hspan) {
 		GridData gd;
 		packageTable = new Tree((Composite) container, SWT.BORDER | SWT.SINGLE | SWT.V_SCROLL);
