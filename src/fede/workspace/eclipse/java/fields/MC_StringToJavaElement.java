@@ -61,11 +61,11 @@ public class MC_StringToJavaElement extends MC_AttributesItem {
 	 */
 	@Override
 	public void notifieValueChanged(UIField field, Object value) {
-		super.notifieValueChanged(field, convertToModelValue(value));
+		super.notifieValueChanged(field, visualToModel(value));
 	}
 
 	@Override
-	public Object convertToModelValue(Object visualValue) {
+	public Object visualToModel(Object visualValue) {
 		if (visualValue == null) {
 			return null;
 		}
