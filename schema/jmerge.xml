@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merge:options
+	block="\s*@\s*(block)\s*\n"
+  	xmlns:merge="http://www.eclipse.org/org/eclipse/emf/codegen/jmerge/Options">
+
+	<merge:dictionaryPattern name="generatedMember"
+		select="Member/getComment" match="\s*@\s*(generated)\s*\n" />
+
+	<merge:dictionaryPattern name="generatedUnmodifiableMembers"
+		select="Member/getComment" match="\s*@\s*(unmodifiable)\s*\n" />
+
+	<!-- if target is generated, transfer -->
+	<!-- change to sourceMarkup if the source is the standard -->
+	<!-- sourceTransfer="\s*//\s*begin-user-code(.*?)//\s*end-user-code\s*\n"-->
+	<merge:pull targetMarkup="^generated$" sourceGet="Method/getBody"
+		targetPut="Method/setBody" />
+
+	<!-- copy comments except between the begin-user-doc
+		and end-user-doc tags -->
+	<merge:pull sourceMarkup="^generated$" sourceGet="Member/getComment"
+		targetMarkup="^generated$" targetPut="Member/setComment"
+		sourceTransfer="(@begin-user-doc.*@end-user-doc)" />
+
+	<merge:pull sourceMarkup="^unmodifiable$" sourceGet="Member/getBody"
+		sourceTransfer="\s*//\s*begin-user-code(.*?)//\s*end-user-code\s*\n"
+		targetPut="Member/setBody" />
+
+	<!-- copy comments except between the begin-user-doc
+		and end-user-doc tags -->
+	<merge:pull sourceMarkup="^unmodifiable$"
+		sourceGet="Member/getComment" targetMarkup="^unmodifiable$"
+		targetPut="Member/setComment"
+		sourceTransfer="@begin-user-doc(.*)@end-user-doc" />
+
+	
+	<merge:pull sourceMarkup="^unmodifiable$" sourceGet="Member/getFlags"
+		targetPut="Member/setFlags" />
+		
+	
+	<merge:pull sourceMarkup="^generated$" sourceGet="Initializer/getBody"
+		targetPut="Initializer/setBody" />
+	<merge:pull sourceMarkup="^generated$" sourceGet="Type/getSuperclass"
+		targetPut="Type/setSuperclass" />
+	
+	<merge:pull
+  	  sourceGet="Type/getSuperInterfaces"
+  	  sourceTransfer= "(\s*@\s*implements)(.*?)(?:&lt;!--|\n)"
+   	 targetMarkup="^generated$"
+   	 targetPut="Type/addSuperInterface"/> 
+    
+    
+	<merge:pull sourceMarkup="^generated$" sourceGet="Field/getType"
+		targetPut="Field/setType" />
+	<merge:pull sourceMarkup="^generated$" sourceGet="Field/getInitializer"
+		targetPut="Field/setInitializer" />
+	<merge:pull sourceMarkup="^generated$" sourceGet="Method/getReturnType"
+		targetPut="Method/setReturnType" />
+	<merge:pull sourceMarkup="^generated$" sourceGet="Method/getExceptions"
+		targetPut="Method/addException" />
+		
+	<merge:sweep markup="^generated$" select="Member" />
+</merge:options>
