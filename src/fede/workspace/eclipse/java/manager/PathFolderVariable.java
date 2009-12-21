@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.impl.var.VariableImpl;
@@ -48,7 +48,7 @@ public class PathFolderVariable extends VariableImpl {
 	 * @param packageName
 	 *            the package name
 	 */
-	public PathFolderVariable(CompactUUID id, String name, Variable packageName) {
+	public PathFolderVariable(UUID id, String name, Variable packageName) {
 		super(id, name);
 		this.packageName = packageName;
 	}

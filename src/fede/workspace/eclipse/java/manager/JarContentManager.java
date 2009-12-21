@@ -39,7 +39,7 @@ import fede.workspace.eclipse.content.FolderContentManager;
 import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
@@ -71,7 +71,7 @@ public class JarContentManager extends FolderContentManager implements IJavaItem
 	 * @throws CadseException
 	 *             the melusine exception
 	 */
-	public JarContentManager(CompactUUID id) throws CadseException {
+	public JarContentManager(UUID id) throws CadseException {
 		super(id, new ShortNameVariable());
 	}
 

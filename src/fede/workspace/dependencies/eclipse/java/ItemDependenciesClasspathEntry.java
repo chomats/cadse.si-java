@@ -41,7 +41,7 @@ import org.eclipse.pde.internal.core.RequiredPluginsClasspathContainer;
 import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.eclipse.java.WSJavaPlugin;
 import fr.imag.adele.cadse.core.CadseDomain;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.WSModelState;
@@ -77,7 +77,7 @@ public class ItemDependenciesClasspathEntry implements IClasspathContainer {
 	private Item								item;
 
 	/** The id. */
-	private CompactUUID							id;
+	private UUID							id;
 
 	private String								label;
 
@@ -94,7 +94,7 @@ public class ItemDependenciesClasspathEntry implements IClasspathContainer {
 	 * @throws CoreException
 	 *             the core exception
 	 */
-	public ItemDependenciesClasspathEntry(IJavaProject jp, String label, Item item, CompactUUID id,
+	public ItemDependenciesClasspathEntry(IJavaProject jp, String label, Item item, UUID id,
 			IClasspathContainer previousSessionContainer) throws CoreException {
 		this.item = item;
 		this.id = item == null ? id : item.getId();

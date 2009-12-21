@@ -52,7 +52,7 @@ import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.ChangeID;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
@@ -110,7 +110,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param classFolder
 	 *            the class folder
 	 */
-	public JavaProjectContentManager(CompactUUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
+	public JavaProjectContentManager(UUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
 		super(id, projectname);
 		assert sourcefolder != null;
 		assert classFolder != null;
@@ -130,7 +130,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param sourcefolder
 	 *            the sourcefolder
 	 */
-	public JavaProjectContentManager(CompactUUID id, Variable projectname, Variable sourcefolder) {
+	public JavaProjectContentManager(UUID id, Variable projectname, Variable sourcefolder) {
 		this(id, projectname, sourcefolder, sourcefolder.isNull() ? NullVariable.INSTANCE
 				: JavaProjectManager.DEFAULT_OUTPUT_FOLDER_NAME);
 	}
@@ -145,7 +145,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 * @param hasDefaulSourceFolder
 	 *            the has defaul source folder
 	 */
-	public JavaProjectContentManager(CompactUUID id, Variable projectname, boolean hasDefaulSourceFolder) {
+	public JavaProjectContentManager(UUID id, Variable projectname, boolean hasDefaulSourceFolder) {
 		this(id, projectname, hasDefaulSourceFolder ? JavaProjectManager.DEFAULT_SOURCES_FOLDER_NAME
 				: NullVariable.INSTANCE, hasDefaulSourceFolder ? JavaProjectManager.DEFAULT_OUTPUT_FOLDER_NAME
 				: NullVariable.INSTANCE);

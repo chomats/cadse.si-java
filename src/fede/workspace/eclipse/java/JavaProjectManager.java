@@ -85,7 +85,7 @@ import fede.workspace.dependencies.eclipse.java.IJavaItemManager.DependencyNatur
 import fede.workspace.eclipse.MelusineProjectManager;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.IItemManager;
 import fr.imag.adele.cadse.core.Item;
@@ -974,7 +974,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 	}
 
 	// public static Set<IClasspathEntry> calculateDependeciesLater(final
-	// LogicalWorkspace model, final CompactUUID id,
+	// LogicalWorkspace model, final UUID id,
 	// final Item item) {
 	// try {
 	// if (item == null && id == null) {
@@ -1186,7 +1186,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 	static private void addDependency(IClasspathManager classpathManager, Item root, Link requirementLink,
 			Set<IClasspathEntry> dependencies, Set<Item> visitedItems, Set<Item> resolvedPackageItems, MultiStatus ms) {
 
-		CompactUUID requiredItemId = requirementLink.getDestinationId();
+		UUID requiredItemId = requirementLink.getDestinationId();
 		Item requiredItem = requirementLink.getResolvedDestination();
 
 		Item targetItem = requiredItem;
@@ -1345,11 +1345,11 @@ public class JavaProjectManager extends MelusineProjectManager {
 	// }
 	// }
 	//
-	// private final CompactUUID id;
+	// private final UUID id;
 	// private final Item item;
 	// private final LogicalWorkspace model;
 	//
-	// private UpdateClasspathLater(String name, CompactUUID id, Item item,
+	// private UpdateClasspathLater(String name, UUID id, Item item,
 	// LogicalWorkspace model) {
 	// super(name);
 	// this.id = id;

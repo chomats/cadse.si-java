@@ -31,7 +31,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 import fede.workspace.eclipse.MelusineProjectManager;
 import fede.workspace.tool.view.WSPlugin;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 
 /**
@@ -57,7 +57,7 @@ public class ItemDependenciesClasspathResolver extends ClasspathContainerInitial
 			item = WSPlugin.sGetItemFromResource(project.getResource());
 		} catch (Throwable e) {
 		}
-		CompactUUID id = null;
+		UUID id = null;
 		if (item == null) {
 			try {
 				id = MelusineProjectManager.getUUIDItem(project.getResource());

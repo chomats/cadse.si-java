@@ -51,7 +51,7 @@ import fede.workspace.eclipse.java.osgi.OsgiManifest;
 import fede.workspace.tool.eclipse.MappingManager;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.IGenerateContent;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
@@ -80,7 +80,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param hassourcefolder
 	 *            the hassourcefolder
 	 */
-	public EclipsePluginContentManger(CompactUUID id, Variable projectname, boolean hassourcefolder) {
+	public EclipsePluginContentManger(UUID id, Variable projectname, boolean hassourcefolder) {
 		super(id, projectname, hassourcefolder);
 	}
 
@@ -96,7 +96,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param classFolder
 	 *            the class folder
 	 */
-	public EclipsePluginContentManger(CompactUUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
+	public EclipsePluginContentManger(UUID id, Variable projectname, Variable sourcefolder, Variable classFolder) {
 		super(id, projectname, sourcefolder, classFolder);
 	}
 
@@ -110,7 +110,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @param sourcefolder
 	 *            the sourcefolder
 	 */
-	public EclipsePluginContentManger(CompactUUID id, Variable projectname, Variable sourcefolder) {
+	public EclipsePluginContentManger(UUID id, Variable projectname, Variable sourcefolder) {
 		super(id, projectname, sourcefolder);
 	}
 

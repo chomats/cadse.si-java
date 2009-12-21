@@ -19,7 +19,7 @@
 
 package fede.workspace.eclipse.java.manager;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.impl.var.VariableImpl;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -43,7 +43,7 @@ public class ClassVariable extends VariableImpl {
 	 * @param className
 	 *            the class name
 	 */
-	public ClassVariable(CompactUUID id, String name, Variable className) {
+	public ClassVariable(UUID id, String name, Variable className) {
 		super(id, name);
 		this.className = className;
 	}
