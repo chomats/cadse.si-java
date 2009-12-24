@@ -186,7 +186,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 			if (getOwnerItem() != null) {
 				View.setItemPersistenceID(p, getOwnerItem());
 			}
-			JavaProjectManager.createJavaProject(p, getOwnerItem(), defaultMonitor, ContextVariable.DEFAULT, sourcefolder,
+			JavaProjectManager.createJavaProject(p, getOwnerItem(), defaultMonitor, ContextVariableImpl.DEFAULT, sourcefolder,
 					classFolder);
 
 			/*
@@ -324,7 +324,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	@Override
 	public Object[] getResources(String kind) {
 		if ("java-source".equals(kind)) {
-			IPackageFragmentRoot s = getJavaSourceElement(ContextVariable.DEFAULT);
+			IPackageFragmentRoot s = getJavaSourceElement(ContextVariableImpl.DEFAULT);
 			if (s != null) {
 				return new Object[] { s };
 			}
@@ -370,7 +370,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 			@Override
 			public Object[] getElements(Object parent) {
 				if (parent == JavaProjectContentManager.this) {
-					return new Object[] { getJavaProject(ContextVariable.DEFAULT) };
+					return new Object[] { getJavaProject(ContextVariableImpl.DEFAULT) };
 				}
 				return super.getElements(parent);
 			}

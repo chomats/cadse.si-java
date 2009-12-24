@@ -22,7 +22,7 @@ public class MoveJavaClassMappingOperation extends MappingOperation {
 		//
 		// IPackageFragment newPackage;
 		// try {
-		// newPackage = cm.createPackageFragment(ContextVariable.DEFAULT, pn,
+		// newPackage = cm.createPackageFragment(ContextVariableImpl.DEFAULT, pn,
 		// true, EclipseTool.getDefaultMonitor());
 		//
 		// ContextVariable oldcontext = new ContextVariable();
@@ -43,7 +43,7 @@ public class MoveJavaClassMappingOperation extends MappingOperation {
 		// e1.printStackTrace();
 		// }
 		// Activator.unSetItemPersistenceID(f, true);
-		// cu = cm.getCompilationUnit(ContextVariable.DEFAULT);
+		// cu = cm.getCompilationUnit(ContextVariableImpl.DEFAULT);
 		// f = cu.getResource();
 		// EclipseTool.setItemPersistenceID(f, goodItem);
 		// // cm.

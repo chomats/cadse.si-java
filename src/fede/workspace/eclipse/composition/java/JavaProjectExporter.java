@@ -41,7 +41,7 @@ import fede.workspace.eclipse.MelusineProjectManager;
 import fede.workspace.eclipse.composer.EclipseExportedContent;
 import fede.workspace.eclipse.exporter.EclipseExporter;
 import fede.workspace.eclipse.java.JavaProjectManager;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 
 /**
  * The Class JavaProjectExporter.

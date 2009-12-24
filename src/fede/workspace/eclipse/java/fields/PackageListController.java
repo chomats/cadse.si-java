@@ -43,7 +43,7 @@ import fede.workspace.dependencies.eclipse.java.IJavaItemManager;
 import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.eclipse.java.WSJavaPlugin;
 import fede.workspace.tool.view.WSPlugin;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_AbstractTreeDialogForList_Browser_Combo;
