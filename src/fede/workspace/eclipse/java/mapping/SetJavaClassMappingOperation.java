@@ -50,7 +50,7 @@ public class SetJavaClassMappingOperation extends MappingOperation {
 		// GeneratedInterfaceManager.getPackage(goodItem).getShortName();
 		// String cn = goodItem.getName();
 		// IPackageFragment pnJdt =
-		// cm.createPackageFragment(ContextVariable.DEFAULT, pn, true, monitor);
+		// cm.createPackageFragment(ContextVariableImpl.DEFAULT, pn, true, monitor);
 		// pnJdt.createCompilationUnit(cn + ".java",
 		// JavaElementManager.getGeneratedTextAttribute(goodItem), true,
 		// monitor);

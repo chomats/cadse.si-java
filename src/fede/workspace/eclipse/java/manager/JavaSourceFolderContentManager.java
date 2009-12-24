@@ -46,7 +46,7 @@ import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
 import java.util.UUID;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.impl.var.NullVariable;
@@ -120,7 +120,7 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 		super.create();
 		try {
 			JavaProjectManager.createJavaSourceFolder(getItem(), getFolder(),
-					getSpecificOutputFolder(ContextVariable.DEFAULT), EclipseTool.getDefaultMonitor());
+					getSpecificOutputFolder(ContextVariableImpl.DEFAULT), EclipseTool.getDefaultMonitor());
 		} catch (CoreException e) {
 			throw new CadseException("Cannot create java source folder from {0} : {1}", e, getItem().getName(), e
 					.getMessage());

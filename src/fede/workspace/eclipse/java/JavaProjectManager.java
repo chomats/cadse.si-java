@@ -86,7 +86,7 @@ import fede.workspace.eclipse.MelusineProjectManager;
 import fede.workspace.tool.view.WSPlugin;
 import fr.imag.adele.cadse.core.CadseException;
 import java.util.UUID;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.IItemManager;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
@@ -386,7 +386,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 		 * TODO: We should verify that the project is actually a Java project
 		 */
 		IProject project = getProject(item);
-		return project.getFolder(DEFAULT_SOURCES_FOLDER_NAME.compute(ContextVariable.DEFAULT, item));
+		return project.getFolder(DEFAULT_SOURCES_FOLDER_NAME.compute(ContextVariableImpl.DEFAULT, item));
 
 		/*
 		 * TODO: We should consider items associated with files, or parts of a
@@ -444,7 +444,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 			sourceFolder.create(false, true, monitor);
 		}
 
-		IFolder defaultOutputFolder = project.getFolder(DEFAULT_OUTPUT_FOLDER_NAME.compute(ContextVariable.DEFAULT,
+		IFolder defaultOutputFolder = project.getFolder(DEFAULT_OUTPUT_FOLDER_NAME.compute(ContextVariableImpl.DEFAULT,
 				item));
 		if (!defaultOutputFolder.exists()) {
 			defaultOutputFolder.create(false, true, monitor);
@@ -523,7 +523,7 @@ public class JavaProjectManager extends MelusineProjectManager {
 		}
 
 		if (!useDefaultClasses(javaProject)) {
-			IFolder output = project.getFolder(DEFAULT_OUTPUT_FOLDER_NAME.compute(ContextVariable.DEFAULT, item));
+			IFolder output = project.getFolder(DEFAULT_OUTPUT_FOLDER_NAME.compute(ContextVariableImpl.DEFAULT, item));
 			if (output.exists()) {
 				output.delete(false, monitor);
 			}
