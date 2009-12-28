@@ -54,7 +54,7 @@ import fr.imag.adele.cadse.core.build.IExportedContent;
 public abstract class ItemComponentsClasspathEntry implements IClasspathContainer {
 
 	/** The export type. */
-	private final String exportType;
+	private final Class<?> exportType;
 	
 	/** The export entries. */
 	private final boolean exportEntries;
@@ -82,7 +82,7 @@ public abstract class ItemComponentsClasspathEntry implements IClasspathContaine
 	 * @throws CoreException
 	 *             the core exception
 	 */
-	public ItemComponentsClasspathEntry(IJavaProject javaProject, Item item, String exportType, boolean exportEntries, IClasspathAttribute attribute) throws CoreException {
+	public ItemComponentsClasspathEntry(IJavaProject javaProject, Item item, Class<?> exportType, boolean exportEntries, IClasspathAttribute attribute) throws CoreException {
 		this.exportType	= exportType;
 		this.exportEntries	= exportEntries;
 		this.attribute = attribute;

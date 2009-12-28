@@ -31,6 +31,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 
 import fede.workspace.dependencies.eclipse.java.ItemDependenciesClasspathEntry;
+import fr.imag.adele.cadse.as.platformide.IPlatformIDE;
 import fr.imag.adele.cadse.core.CadseDomain;
 import fr.imag.adele.cadse.core.ChangeID;
 import fr.imag.adele.cadse.core.Item;
@@ -38,7 +39,6 @@ import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.WSModelState;
 import fr.imag.adele.cadse.core.WorkspaceListener;
 import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
-import fr.imag.adele.fede.workspace.as.platformeclipse.IPlatformEclipse;
 
 /**
  * @generated
@@ -53,7 +53,7 @@ public class Java {
 	/**
 	 * @generated
 	 */
-	IPlatformEclipse	platformEclipse;
+	IPlatformIDE    	platformEclipse;
 
 	protected JobReloadClassPathMapping j;
 
@@ -197,7 +197,7 @@ public class Java {
 		
 	}
 
-	public IPlatformEclipse getPlatformEclipse() {
+	public IPlatformIDE getPlatformEclipse() {
 		return platformEclipse;
 	}
 }
