@@ -188,7 +188,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @return the default package
 	 */
 	protected String getDefaultPackage() {
-		return getItem().getQualifiedName();
+		return getOwnerItem().getQualifiedName();
 	}
 
 	/**
@@ -452,7 +452,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			pluginModel.load();
 		}
 		IPluginBase pluginBase = pluginModel.getPluginBase(true);
-		computeExtension(getItem(), pluginBase, pluginModel);
+		computeExtension(getOwnerItem(), pluginBase, pluginModel);
 		content = pluginModel.getContents();
 		MappingManager.generate(project, null, "plugin.xml", content, monitor);
 	}
@@ -511,7 +511,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 */
 	protected String[] computeManifestImports() {
 		SortedSet<String> imports = new TreeSet<String>();
-		computeManifestImports(getItem(), imports);
+		computeManifestImports(getOwnerItem(), imports);
 		return imports.toArray(new String[imports.size()]);
 	}
 
@@ -542,7 +542,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 */
 	protected String[] computeManifestExports() {
 		HashSet<String> exports = new HashSet<String>();
-		computeManifestExports(getItem(), exports);
+		computeManifestExports(getOwnerItem(), exports);
 		return exports.toArray(new String[exports.size()]);
 	}
 
