@@ -152,26 +152,31 @@ iPOJO-Components: component { $immediate="false" $classname="fr.imag.ad
  ean" }field { $name="__FplatformEclipse" $type="boolean" }field { $nam
  e="__FworkspaceCU" $type="boolean" }field { $name="__Mstop" $type="boo
  lean" }field { $name="__MgetPlatformEclipse" $type="boolean" }field { 
- $name="platformEclipse" $type="IPlatformEclipse" }field { $name="j" $t
- ype="fr.imag.adele.fede.workspace.si.java.Java$JobReloadClassPathMappi
- ng" }field { $name="workspaceCU" $type="CadseDomain" }field { $name="_
- _IM" $type="org.apache.felix.ipojo.InstanceManager" }method { $name="_
- _getworkspaceCU" $return="CadseDomain" }method { $arguments="{CadseDom
- ain}" $name="__setworkspaceCU" }method { $name="__getplatformEclipse" 
- $return="IPlatformEclipse" }method { $arguments="{IPlatformEclipse}" $
- name="__setplatformEclipse" }method { $name="__getj" $return="fr.imag.
- adele.fede.workspace.si.java.Java$JobReloadClassPathMapping" }method {
-  $arguments="{fr.imag.adele.fede.workspace.si.java.Java$JobReloadClass
- PathMapping}" $name="__setj" }method { $name="$init" }method { $argume
- nts="{org.apache.felix.ipojo.InstanceManager}" $name="$init" }method {
-  $name="getWorkspaceCU" $return="CadseDomain" }method { $name="__getWo
- rkspaceCU" $return="CadseDomain" }method { $name="start" }method { $na
- me="__start" }method { $name="stop" }method { $name="__stop" }method {
-  $name="getPlatformEclipse" $return="IPlatformEclipse" }method { $name
- ="__getPlatformEclipse" $return="IPlatformEclipse" }}requires { $field
- ="workspaceCU" $optional="true" $filter="(sam.domain.root=Workspace)" 
- }requires { $field="platformEclipse" $optional="false" }}instance { $c
- omponent="fr.imag.adele.fede.workspace.si.java.Java" $name="fr.imag.ad
- ele.cadse.si.workspace.java.instance" }
+ $name="platformEclipse" $type="fr.imag.adele.fede.workspace.as.platfor
+ meclipse.IPlatformEclipse" }field { $name="j" $type="fr.imag.adele.fed
+ e.workspace.si.java.Java$JobReloadClassPathMapping" }field { $name="wo
+ rkspaceCU" $type="fr.imag.adele.cadse.core.CadseDomain" }field { $name
+ ="__IM" $type="org.apache.felix.ipojo.InstanceManager" }method { $name
+ ="__getworkspaceCU" $return="fr.imag.adele.cadse.core.CadseDomain" }me
+ thod { $arguments="{fr.imag.adele.cadse.core.CadseDomain}" $name="__se
+ tworkspaceCU" }method { $name="__getplatformEclipse" $return="fr.imag.
+ adele.fede.workspace.as.platformeclipse.IPlatformEclipse" }method { $a
+ rguments="{fr.imag.adele.fede.workspace.as.platformeclipse.IPlatformEc
+ lipse}" $name="__setplatformEclipse" }method { $name="__getj" $return=
+ "fr.imag.adele.fede.workspace.si.java.Java$JobReloadClassPathMapping" 
+ }method { $arguments="{fr.imag.adele.fede.workspace.si.java.Java$JobRe
+ loadClassPathMapping}" $name="__setj" }method { $name="$init" }method 
+ { $arguments="{org.apache.felix.ipojo.InstanceManager}" $name="$init" 
+ }method { $name="getWorkspaceCU" $return="fr.imag.adele.cadse.core.Cad
+ seDomain" }method { $name="__getWorkspaceCU" $return="fr.imag.adele.ca
+ dse.core.CadseDomain" }method { $name="start" }method { $name="__start
+ " }method { $name="stop" }method { $name="__stop" }method { $name="get
+ PlatformEclipse" $return="fr.imag.adele.fede.workspace.as.platformecli
+ pse.IPlatformEclipse" }method { $name="__getPlatformEclipse" $return="
+ fr.imag.adele.fede.workspace.as.platformeclipse.IPlatformEclipse" }}re
+ quires { $field="workspaceCU" $optional="true" $filter="(sam.domain.ro
+ ot=Workspace)" }requires { $field="platformEclipse" $optional="false" 
+ }}instance { $component="fr.imag.adele.fede.workspace.si.java.Java" $n
+ ame="fr.imag.adele.cadse.si.workspace.java.instance" }
 ipojo-auto-start: true
 
