@@ -22,6 +22,7 @@
  */
 package fede.workspace.eclipse.composition.java;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ import fr.imag.adele.cadse.core.content.ContentItem;
 public class JavaProjectExporter extends EclipseExporter {
 
 	/** The Constant JAVA_TYPE_EXPORTER. */
-	public final static String	JAVA_TYPE_EXPORTER	= "classes";
+	public final static Class<?>	JAVA_TYPE_EXPORTER	= File.class;
 
 	/**
 	 * Instantiates a new java project exporter.
@@ -69,7 +70,7 @@ public class JavaProjectExporter extends EclipseExporter {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	public JavaProjectExporter(ContentItem cm, String... exporterTypes) {
+	public JavaProjectExporter(ContentItem cm, Class<?>... exporterTypes) {
 		super(cm, exporterTypes);
 	}
 
@@ -97,7 +98,7 @@ public class JavaProjectExporter extends EclipseExporter {
 	 */
 	@Override
 	protected void exportItem(EclipseExportedContent eclipseExportedContent, IResourceDelta projectDelta,
-			IProgressMonitor monitor, String exporterType) throws CoreException {
+			IProgressMonitor monitor, Class<?> exporterType) throws CoreException {
 
 		/*
 		 * skip empty notifications
