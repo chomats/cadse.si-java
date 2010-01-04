@@ -66,23 +66,13 @@ public class JavaProjectComposer extends EclipseComposer {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected JavaProjectComposer(ContentItem contentManager, String... exporterTypes) {
+	protected JavaProjectComposer(ContentItem contentManager, Class<?>... exporterTypes) {
 		super(contentManager, exporterTypes);
 	}
 
 	@Override
 	protected void postCompose(IBuildingContext context, List<IExportedContent> listExportedContent,
 			IExporterTarget target) {
-
-		/*
-		 * Skip non composite items
-		 */
-		if (!getItem().isComposite()) {
-			return;
-		}
-		if (getItem().getComponents().isEmpty()) {
-			return;
-		}
 
 		try {
 			/*
