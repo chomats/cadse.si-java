@@ -47,7 +47,7 @@ import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
-import fr.imag.adele.cadse.core.util.Assert;
+import fr.imag.adele.cadse.util.Assert;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
@@ -170,7 +170,7 @@ public class JavaFileContentManager extends FileContentManager implements IJavaI
 	 * @return the class name
 	 */
 	public String getClassName(ContextVariable cxt) {
-		return className.compute(cxt, getItem());
+		return className.compute(cxt, getOwnerItem());
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class JavaFileContentManager extends FileContentManager implements IJavaI
 	 * @return the package name
 	 */
 	public String getPackageName(ContextVariable cxt) {
-		return packageName.compute(cxt, getItem());
+		return packageName.compute(cxt, getOwnerItem());
 	}
 
 	/**
@@ -258,7 +258,7 @@ public class JavaFileContentManager extends FileContentManager implements IJavaI
 		if (parent instanceof JavaPackageFolderContentManager) {
 			return ((JavaPackageFolderContentManager) parent).createPackageFragment(cxt, name, force, monitor);
 		}
-		throw new IllegalArgumentException("Cannot create a package " + name + " in item " + getItem());
+		throw new IllegalArgumentException("Cannot create a package " + name + " in item " + getOwnerItem());
 	}
 
 	/**

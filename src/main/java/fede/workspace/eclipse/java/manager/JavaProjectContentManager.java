@@ -63,6 +63,7 @@ import fr.imag.adele.cadse.core.transaction.delta.ImmutableWorkspaceDelta;
 import fr.imag.adele.cadse.core.impl.var.NullVariable;
 import fr.imag.adele.cadse.core.util.Convert;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
 
@@ -287,14 +288,14 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 	 */
 	@Override
 	public void delete() throws CadseException {
-		getItem().getLogicalWorkspace().removeListener(wsListener);
+		getOwnerItem().getLogicalWorkspace().removeListener(wsListener);
 		try {
 			IProject p = (IProject) getMainResource();
 			if (p.exists()) {
 				p.delete(true, EclipseTool.getDefaultMonitor());
 			}
 		} catch (CoreException e) {
-			throw new CadseException("Cannot delete java project from {0} : {1}", e, getItem().getId(), e.getMessage());
+			throw new CadseException("Cannot delete java project from {0} : {1}", e, getOwnerItem().getId(), e.getMessage());
 		}
 	}
 
@@ -413,7 +414,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 		if (pfr != null) {
 			return pfr.createPackageFragment(name, force, monitor);
 		}
-		throw new IllegalArgumentException("Cannot create a package " + name + " in item " + getItem());
+		throw new IllegalArgumentException("Cannot create a package " + name + " in item " + getOwnerItem());
 	}
 
 	/*

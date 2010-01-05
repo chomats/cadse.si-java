@@ -95,6 +95,7 @@ import fr.imag.adele.cadse.core.WSModelState;
 import fr.imag.adele.cadse.core.impl.CadseCore;
 import fr.imag.adele.cadse.core.impl.var.StringVariable;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
 

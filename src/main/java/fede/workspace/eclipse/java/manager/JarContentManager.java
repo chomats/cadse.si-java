@@ -40,6 +40,8 @@ import fede.workspace.eclipse.java.JavaProjectManager;
 import fede.workspace.tool.eclipse.EclipseTool;
 import fr.imag.adele.cadse.core.CadseException;
 import java.util.UUID;
+
+import fr.imag.adele.cadse.core.attribute.StringAttributeType;
 import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
@@ -55,10 +57,10 @@ import fr.imag.adele.cadse.core.impl.var.ShortNameVariable;
 public class JarContentManager extends FolderContentManager implements IJavaItemManager {
 
 	/** The Constant JAR_RESOURCES_ATTRIBUTE. */
-	public static final String	JAR_RESOURCES_ATTRIBUTE			= "jar-resource";
+	public StringAttributeType	JAR_RESOURCES_ATTRIBUTE			= null;
 
 	/** The Constant JAR_SOURCE_RESOURCES_ATTRIBUTE. */
-	public static final String	JAR_SOURCE_RESOURCES_ATTRIBUTE	= "jar-source-resource";
+	public StringAttributeType	JAR_SOURCE_RESOURCES_ATTRIBUTE	= null;
 
 	/**
 	 * Instantiates a new jar content manager.
@@ -94,7 +96,7 @@ public class JarContentManager extends FolderContentManager implements IJavaItem
 	 * @see fede.workspace.dependencies.eclipse.java.IJavaItemManager#getJavaElement()
 	 */
 	public IJavaElement[] getJavaElement(IJavaProject jpRef) {
-		String jarpathStr = (String) getItem().getAttribute(JAR_RESOURCES_ATTRIBUTE);
+		String jarpathStr = (String) getOwnerItem().getAttribute(JAR_RESOURCES_ATTRIBUTE);
 		if (jarpathStr != null) {
 			IFolder libFolder = getFolder();
 			IFile jarFile = libFolder.getFile(new Path(jarpathStr));

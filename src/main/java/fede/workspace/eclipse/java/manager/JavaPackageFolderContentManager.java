@@ -72,7 +72,7 @@ public class JavaPackageFolderContentManager extends FolderContentManager {
 	 * @return the package name
 	 */
 	public String getPackageName(ContextVariable cxt) {
-		return packagename.compute(cxt, getItem());
+		return packagename.compute(cxt, getOwnerItem());
 	}
 
 	/*
