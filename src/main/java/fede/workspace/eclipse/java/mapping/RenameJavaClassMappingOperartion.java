@@ -16,6 +16,7 @@ import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.transaction.delta.ItemDelta;
 import fr.imag.adele.cadse.core.transaction.delta.MappingOperation;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 
 public class RenameJavaClassMappingOperartion extends MappingOperation {
 	String	cn;
@@ -28,8 +29,8 @@ public class RenameJavaClassMappingOperartion extends MappingOperation {
 	@Override
 	public void commit(LogicalWorkspace wl, Item goodItem) {
 		JavaFileContentManager cm = (JavaFileContentManager) goodItem.getContentItem();
-		ContextVariable oldcontext = new ContextVariable();
-		oldcontext.putValue(goodItem, CadseGCST.ITEM_at_NAME, oldcn);
+		ContextVariable oldcontext = new ContextVariableImpl();
+		oldcontext.putValue(goodItem, CadseGCST.ITEM_at_NAME_, oldcn);
 
 		ICompilationUnit cu = cm.getCompilationUnit(oldcontext);
 		IResource f = cu.getResource();

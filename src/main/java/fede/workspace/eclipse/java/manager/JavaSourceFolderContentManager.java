@@ -51,6 +51,7 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.impl.var.NullVariable;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
 
 /**
@@ -103,9 +104,9 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 	public void delete() throws CadseException {
 		super.delete();
 		try {
-			JavaProjectManager.deleteJavaSourceFolder(getItem(), getFolder(), EclipseTool.getDefaultMonitor());
+			JavaProjectManager.deleteJavaSourceFolder(getOwnerItem(), getFolder(), EclipseTool.getDefaultMonitor());
 		} catch (CoreException e) {
-			throw new CadseException("Cannot delete java source folder from {0} : {1}", e, getItem().getName(), e
+			throw new CadseException("Cannot delete java source folder from {0} : {1}", e, getOwnerItem().getName(), e
 					.getMessage());
 		}
 	}
@@ -119,10 +120,10 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 	public void create() throws CadseException {
 		super.create();
 		try {
-			JavaProjectManager.createJavaSourceFolder(getItem(), getFolder(),
+			JavaProjectManager.createJavaSourceFolder(getOwnerItem(), getFolder(),
 					getSpecificOutputFolder(ContextVariableImpl.DEFAULT), EclipseTool.getDefaultMonitor());
 		} catch (CoreException e) {
-			throw new CadseException("Cannot create java source folder from {0} : {1}", e, getItem().getName(), e
+			throw new CadseException("Cannot create java source folder from {0} : {1}", e, getOwnerItem().getName(), e
 					.getMessage());
 		}
 	}
@@ -136,7 +137,7 @@ public class JavaSourceFolderContentManager extends FolderContentManager impleme
 	 * @return the specific output folder
 	 */
 	protected IFolder getSpecificOutputFolder(ContextVariable cxt) {
-		return getParentContainer(cxt).getFolder(new Path(output.compute(cxt, getItem())));
+		return getParentContainer(cxt).getFolder(new Path(output.compute(cxt, getOwnerItem())));
 	}
 
 	/*
