@@ -30,6 +30,7 @@
                         fede.workspace.eclipse.java*;version="${version.cadse}",
                         fr.imag.adele.fede.workspace.si.java*;version="${version.cadse}"
                         </Export-Package>
+                        <Bundle-Activator>fede.workspace.eclipse.java.WSJavaPlugin</Bundle-Activator>
                     </instructions>
                 </configuration>
             </plugin>

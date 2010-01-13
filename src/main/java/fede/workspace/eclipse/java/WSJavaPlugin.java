@@ -32,7 +32,7 @@ import org.osgi.framework.BundleContext;
 public class WSJavaPlugin extends Plugin{
 
 	/** The PLUGI n_ id. */
-	public static String PLUGIN_ID = "Tool.Workspace.Java";
+	public static String PLUGIN_ID = "fr.imag.adele.cadse.si.java";
 	
 	/** The _default. */
 	private static WSJavaPlugin _default;
