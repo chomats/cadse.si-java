@@ -31,6 +31,7 @@
                         fr.imag.adele.fede.workspace.si.java*;version="${version.cadse}"
                         </Export-Package>
                         <Bundle-Activator>fede.workspace.eclipse.java.WSJavaPlugin</Bundle-Activator>
+                        <Import-Package>org.eclipse.core.runtime;registry=!,*</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
