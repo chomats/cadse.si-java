@@ -66,7 +66,7 @@ public class JavaProjectComposer extends EclipseComposer {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	protected JavaProjectComposer(ContentItem contentManager, Class<?>... exporterTypes) {
+	protected JavaProjectComposer(ContentItem contentManager, String... exporterTypes) {
 		super(contentManager, exporterTypes);
 	}
 

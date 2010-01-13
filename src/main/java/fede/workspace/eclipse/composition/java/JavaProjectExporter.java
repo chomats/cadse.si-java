@@ -50,7 +50,7 @@ import fr.imag.adele.cadse.core.content.ContentItem;
 public class JavaProjectExporter extends EclipseExporter {
 
 	/** The Constant JAVA_TYPE_EXPORTER. */
-	public final static Class<?>	JAVA_TYPE_EXPORTER	= File.class;
+	public final static String	JAVA_TYPE_EXPORTER	= "java";
 
 	/**
 	 * Instantiates a new java project exporter.
@@ -70,7 +70,7 @@ public class JavaProjectExporter extends EclipseExporter {
 	 * @param exporterTypes
 	 *            the exporter types
 	 */
-	public JavaProjectExporter(ContentItem cm, Class<?>... exporterTypes) {
+	public JavaProjectExporter(ContentItem cm, String... exporterTypes) {
 		super(cm, exporterTypes);
 	}
 
@@ -98,7 +98,7 @@ public class JavaProjectExporter extends EclipseExporter {
 	 */
 	@Override
 	protected void exportItem(EclipseExportedContent eclipseExportedContent, IResourceDelta projectDelta,
-			IProgressMonitor monitor, Class<?> exporterType) throws CoreException {
+			IProgressMonitor monitor, String exporterType) throws CoreException {
 
 		/*
 		 * skip empty notifications
