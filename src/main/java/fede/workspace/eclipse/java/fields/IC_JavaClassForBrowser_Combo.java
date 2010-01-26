@@ -31,16 +31,20 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
+import fr.imag.adele.cadse.core.CadseException;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.ICRunningField;
 import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_ForBrowserOrCombo;
+import fr.imag.adele.cadse.si.workspace.uiplatform.swt.ic.IC_WithDialogAction;
 import fede.workspace.eclipse.MelusineProjectManager;
 
 /**
@@ -57,19 +61,26 @@ import fede.workspace.eclipse.MelusineProjectManager;
  * not supported. String title-select, default "??".
  */
 
-public class IC_JavaClassForBrowser_Combo extends ICRunningField implements IC_ForBrowserOrCombo {
+public class IC_JavaClassForBrowser_Combo extends IC_WithDialogAction implements IC_ForBrowserOrCombo {
 
-	/** The title. */
-	private String	title;
-
-	/** The message. */
-	private String	message;
+	/** The Constant style_values. */
+	public static final String[]	style_values				= { "CLASSES", "INTERFACES", "ANNOTATIONS", "ENUMS",
+			"ALL TYPES", "CLASSES AND INTERFACES", "CLASSES AND ENUMS" };
+	
+	public static final int[]	style_values_cst				= { 
+		IJavaElementSearchConstants.CONSIDER_CLASSES,
+		IJavaElementSearchConstants.CONSIDER_INTERFACES, 
+		IJavaElementSearchConstants.CONSIDER_ANNOTATION_TYPES, 
+		IJavaElementSearchConstants.CONSIDER_ENUMS,
+		IJavaElementSearchConstants.CONSIDER_ALL_TYPES,
+		IJavaElementSearchConstants.CONSIDER_CLASSES_AND_INTERFACES,
+		IJavaElementSearchConstants.CONSIDER_CLASSES_AND_ENUMS };
 
 	/** The style. */
-	private int		style;
+	private int		_style;
 
 	/** The filter. */
-	private String	filter;
+	private String	_filter;
 
 	public IC_JavaClassForBrowser_Combo() {
 	}
@@ -97,12 +108,29 @@ public class IC_JavaClassForBrowser_Combo extends ICRunningField implements IC_F
 	 *            the filter
 	 */
 	public IC_JavaClassForBrowser_Combo(String title, String message, int style, String filter) {
-		this.title = title;
-		this.message = message;
-		this.style = style;
-		this.filter = filter;
+		this._title = title;
+		this._message = message;
+		this._style = style;
+		this._filter = filter;
 	}
 
+	@Override
+	public void init() throws CadseException {
+		super.init();
+		if (_ic != null) {
+			String style = _ic.getAttribute(CadseGCST.IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_STYLE_);
+			_style = IJavaElementSearchConstants.CONSIDER_ALL_TYPES;
+			if (style != null) {
+				for (int i = 0; i < style_values.length; i++) {
+					if (style.equals(style_values[i])) {
+						_style = style_values_cst[i];
+						break;
+					}
+				}
+			}
+			_filter = _ic.getAttribute(CadseGCST.IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_FILTER_);
+		}
+	}
 	/**
 	 * Gets the active workbench window.
 	 * 
@@ -150,10 +178,10 @@ public class IC_JavaClassForBrowser_Combo extends ICRunningField implements IC_F
 
 	protected SelectionDialog createJavaDialog() throws JavaModelException {
 		SelectionDialog dialog = JavaUI.createTypeDialog(getActiveWorkbenchShell(), PlatformUI.getWorkbench()
-				.getProgressService(), getSearchScope(), style, false, filter);
+				.getProgressService(), getSearchScope(), _style, false, _filter);
 
-		dialog.setTitle(title);
-		dialog.setMessage(message);
+		dialog.setTitle(_title);
+		dialog.setMessage(_message);
 		return dialog;
 	}
 
@@ -245,15 +273,7 @@ public class IC_JavaClassForBrowser_Combo extends ICRunningField implements IC_F
 	}
 
 	public ItemType getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return CadseGCST.IC_JAVA_CLASS_FOR_BROWSER_COMBO;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public String getTitle() {
-		return title;
-	}
 }
