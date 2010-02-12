@@ -90,18 +90,17 @@ Export-Package: fede.workspace.dependencies.eclipse.java;uses:="org.ec
  .internal.corext.codemanipulation,fr.imag.adele.cadse.core.impl.var,o
  rg.eclipse.jdt.internal.core,org.eclipse.jdt.internal.corext.dom,fede
  .workspace.eclipse";version="2.3.0",fr.imag.adele.fede.workspace.si.j
- ava;uses:="fr.imag.adele.cadse.as.platformide,org.eclipse.core.runtim
- e,fr.imag.adele.cadse.core,fr.imag.adele.cadse.core.transaction.delta
- ,fede.workspace.dependencies.eclipse.java,org.eclipse.core.runtime.jo
- bs,org.eclipse.jdt.core";version="2.3.0"
+ ava;uses:="fr.imag.adele.cadse.as.platformide,fr.imag.adele.cadse.cor
+ e,org.eclipse.core.runtime,fede.workspace.dependencies.eclipse.java,o
+ rg.eclipse.core.runtime.jobs,org.eclipse.jdt.core";version="2.3.0"
 Private-Package: schema
-Built-By: chomats
+Built-By: etienne
 Tool: Bnd-0.0.357
 Bundle-Name: fr.imag.adele.cadse.si.java
 Created-By: Apache Maven Bundle Plugin
 Bundle-Vendor: Adele/LIG/ Grenoble University, France
-Build-Jdk: 1.6.0_17
-Bundle-Version: 2.3.0.SNAPSHOT
+Build-Jdk: 1.6.0_0
+Bundle-Version: 2.3.0.SNAPSHOT-201002121709
 Ipojo-auto-start: true
 Bundle-Activator: fede.workspace.eclipse.java.WSJavaPlugin
 Bundle-ManifestVersion: 2
