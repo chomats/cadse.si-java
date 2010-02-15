@@ -275,8 +275,6 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 		try {
 			JMergeUtil.merge(monitor, file, content);
 			return file;
-		} catch (JETException e) {
-			throw new CoreException(new Status(IStatus.ERROR, WSJavaPlugin.PLUGIN_ID, 0, e.getMessage(), e));
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, WSJavaPlugin.PLUGIN_ID, 0, e.getMessage(), e));
 		}
