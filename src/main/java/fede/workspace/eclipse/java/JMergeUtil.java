@@ -113,8 +113,7 @@ public class JMergeUtil {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void merge(IProgressMonitor monitor, IFile targetFile, String emitterResult) throws CoreException,
-			JETException, IOException {
+	public static void merge(IProgressMonitor monitor, IFile targetFile, String emitterResult) throws CoreException, IOException {
 		try {
 			monitor = createIfNull(monitor);
 			if (!targetFile.exists()) {
