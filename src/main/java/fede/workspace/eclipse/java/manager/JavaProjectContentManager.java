@@ -197,7 +197,7 @@ public class JavaProjectContentManager extends ProjectContentManager implements 
 			 * so that the Melusine builders are added in the right builder
 			 * order
 			 */
-			MelusineProjectManager.addMelusineProject(p, defaultMonitor);
+			//MelusineProjectManager.addMelusineProject(p, defaultMonitor);
 
 		} catch (CoreException e) {
 			System.err.println(e.getStatus().toString());
