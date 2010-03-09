@@ -33,7 +33,9 @@ import org.eclipse.ui.PlatformUI;
 
 import java.util.UUID;
 import fr.imag.adele.cadse.core.content.ContentItem;
+import fr.imag.adele.cadse.core.CadseGCST;
 import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.Variable;
 import fede.workspace.eclipse.content.FolderContentManager;
@@ -115,7 +117,7 @@ public class JavaPackageFolderContentManager extends FolderContentManager {
 	 * @return the java source element
 	 */
 	public IPackageFragmentRoot getJavaSourceElement(ContextVariable cxt) {
-		ContentItem parent = getParentContentManager();
+		ContentItem parent = getPartParent();
 		if (parent != null) {
 			return parent.getMainMappingContent(cxt, IPackageFragmentRoot.class);
 		}
@@ -159,5 +161,10 @@ public class JavaPackageFolderContentManager extends FolderContentManager {
 		}
 		IPackageFragmentRoot pfr = getJavaSourceElement(cxt);
 		return pfr.createPackageFragment(name, force, monitor);
+	}
+	
+	@Override
+	public ItemType getType() {
+		return CadseGCST.PACKAGE_CONTENT_MODEL;
 	}
 }
