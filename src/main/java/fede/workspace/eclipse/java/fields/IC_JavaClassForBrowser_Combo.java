@@ -129,6 +129,8 @@ public class IC_JavaClassForBrowser_Combo extends IC_WithDialogAction implements
 				}
 			}
 			_filter = _ic.getAttribute(CadseGCST.IC_JAVA_CLASS_FOR_BROWSER_COMBO_at_FILTER_);
+			if (_filter == null)
+				_filter = "";
 		}
 	}
 	/**
