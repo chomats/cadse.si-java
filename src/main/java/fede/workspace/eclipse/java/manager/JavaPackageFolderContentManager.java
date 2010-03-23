@@ -19,6 +19,8 @@
 
 package fede.workspace.eclipse.java.manager;
 
+import java.util.UUID;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
@@ -31,14 +33,10 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.PlatformUI;
 
-import java.util.UUID;
+import fede.workspace.eclipse.content.FolderContentManager;
 import fr.imag.adele.cadse.core.content.ContentItem;
-import fr.imag.adele.cadse.core.CadseGCST;
-import fr.imag.adele.cadse.core.Item;
-import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.Variable;
-import fede.workspace.eclipse.content.FolderContentManager;
 
 /**
  * The Class JavaPackageFolderContentManager.
@@ -161,10 +159,5 @@ public class JavaPackageFolderContentManager extends FolderContentManager {
 		}
 		IPackageFragmentRoot pfr = getJavaSourceElement(cxt);
 		return pfr.createPackageFragment(name, force, monitor);
-	}
-	
-	@Override
-	public ItemType getType() {
-		return CadseGCST.PACKAGE_CONTENT_MODEL;
 	}
 }
