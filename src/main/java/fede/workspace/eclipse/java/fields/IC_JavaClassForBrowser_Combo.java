@@ -254,7 +254,7 @@ public class IC_JavaClassForBrowser_Combo extends IC_WithDialogAction implements
 		if (value instanceof IType) {
 			return ((IType) value).getFullyQualifiedName('$');
 		}
-		return "<none>";
+		return null;
 	}
 
 	/*
