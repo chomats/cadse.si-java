@@ -42,28 +42,6 @@ public class MC_StringToJavaElement extends MC_AttributesItem {
 		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ui.MC_AttributesItem#getValue()
-	 */
-	@Override
-	public Object getValue() {
-		Object ret = super.getValue();
-		return JavaCore.create((String) ret);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.imag.adele.cadse.core.ui.MC_AttributesItem#notifieValueChanged(fr.imag.adele.cadse.core.ui.UIField,
-	 *      java.lang.Object)
-	 */
-	@Override
-	public void notifieValueChanged(UIField field, Object value) {
-		super.notifieValueChanged(field, visualToModel(value));
-	}
-
 	@Override
 	public Object visualToModel(Object visualValue) {
 		if (visualValue == null) {
@@ -80,6 +58,10 @@ public class MC_StringToJavaElement extends MC_AttributesItem {
 	@Override
 	public Object defaultValue() {
 		Object ret = super.defaultValue();
+		return modelToVisual(ret);
+	}
+
+	protected Object modelToVisual(Object ret) {
 		if ("".equals(ret)) {
 			return null;
 		}
@@ -92,5 +74,4 @@ public class MC_StringToJavaElement extends MC_AttributesItem {
 			return null;
 		}
 	}
-
 }
