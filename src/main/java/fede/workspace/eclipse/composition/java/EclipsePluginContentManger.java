@@ -487,7 +487,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			}
 			ActivatorTemplate at = new ActivatorTemplate();
 			String activatorContent = at.generate(info);
-			generateActivator(project, info, activatorContent, monitor);
+			if (hasActivator())
+				generateActivator(project, info, activatorContent, monitor);
 			generateManifest(info, monitor);
 			generatePluginXml(info, project, monitor);
 		} catch (CoreException e) {
