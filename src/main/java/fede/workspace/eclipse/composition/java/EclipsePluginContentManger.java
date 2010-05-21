@@ -171,7 +171,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 *            the model
 	 */
 	protected void computeModel(PDEGenerateModel model) {
-		model.activatorName = "Activator";
+		model.activatorName = hasActivator()? "Activator" : null;
 		model.packageName = getDefaultPackage();
 		model.qualifiedActivatorName = getDefaultPackage() + "." + model.activatorName;
 		model.isLazyStart = false;
@@ -180,6 +180,10 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 		model.importsPackages = computeManifestImports();
 		model.exportsPackages = computeManifestExports();
 
+	}
+
+	protected boolean hasActivator() {
+		return true;
 	}
 
 	/**
@@ -347,7 +351,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 
 		ActivatorTemplate at = new ActivatorTemplate();
 		String activatorContent = at.generate(info);
-		generateActivator(project, info, activatorContent, monitor);
+		if (hasActivator())
+			generateActivator(project, info, activatorContent, monitor);
 
 		generateManifest(info, monitor);
 		generatePluginXml(info, project, monitor);
