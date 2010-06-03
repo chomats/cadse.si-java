@@ -41,6 +41,10 @@
         </plugins>
     </build>
     <dependencies>
+    	<dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>as.cu</artifactId>
+        </dependency>
         <dependency>
         	<groupId>org.eclipse</groupId>
         	<artifactId>org.eclipse.core.resources</artifactId>
@@ -56,6 +60,10 @@
         <dependency>
         	<groupId>org.eclipse</groupId>
         	<artifactId>org.eclipse.jdt.core</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.eclipse</groupId>
+        	<artifactId>org.eclipse.jdt.ui</artifactId>
         </dependency>
         <dependency>
         	<groupId>org.eclipse</groupId>
@@ -88,6 +96,19 @@
         <dependency>
         	<groupId>org.eclipse</groupId>
         	<artifactId>org.eclipse.jdt.launching</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>fr.imag.adele.cadse</groupId>
+        	<artifactId>cu.core</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.eclipse</groupId>
+        	<artifactId>swt</artifactId>
+        	<type>pom</type>
+        </dependency>
+        <dependency>
+        	<groupId>fr.imag.adele.cadse</groupId>
+        	<artifactId>util.io</artifactId>
         </dependency>
     </dependencies>
 </project>
