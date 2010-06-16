@@ -91,6 +91,8 @@ final class JobReloadClassPathMapping extends Job {
 		testworkspaceToSleep(monitor);
 		if (monitor.isCanceled())
 			return Status.OK_STATUS;
+		if (model == null)
+			return Status.OK_STATUS;
 		Map<IJavaProject, IClasspathContainer> toset = new HashMap<IJavaProject, IClasspathContainer>();
 		for (Item item : model.getItems()) {
 			try {
