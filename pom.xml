@@ -4,13 +4,13 @@
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>bundle</packaging>
-    <groupId>fr.imag.adele.cadse</groupId>
+    <groupId>fr.imag.adele.cadse.runtime</groupId>
     <artifactId>si.java</artifactId>
     <name>fr.imag.adele.cadse.si.java</name>
     <version>2.3.0-SNAPSHOT</version>
     <parent>
 		<artifactId>fr.imag.adele.cadse.parent.ipojo</artifactId>
-		<groupId>fr.imag.adele.cadse</groupId>
+		<groupId>fr.imag.adele.cadse.runtime</groupId>
 		<version>2.3.0-SNAPSHOT</version>
 		<relativePath>../fr.imag.adele.cadse.parent.ipojo</relativePath>
 	</parent>
@@ -50,7 +50,7 @@
         	<artifactId>org.eclipse.core.resources</artifactId>
         </dependency>
         <dependency>
-        	<groupId>fr.imag.adele.cadse</groupId>
+        	<groupId>fr.imag.adele.cadse.runtime</groupId>
         	<artifactId>si.view</artifactId>
         </dependency>
         <dependency>
@@ -78,7 +78,7 @@
         	<artifactId>org.eclipse.text</artifactId>
         </dependency>
         <dependency>
-        	<groupId>fr.imag.adele.cadse</groupId>
+        	<groupId>fr.imag.adele.cadse.runtime</groupId>
         	<artifactId>si.uiplatform.swt</artifactId>
         </dependency>
         <dependency>
@@ -98,7 +98,7 @@
         	<artifactId>org.eclipse.jdt.launching</artifactId>
         </dependency>
         <dependency>
-        	<groupId>fr.imag.adele.cadse</groupId>
+        	<groupId>fr.imag.adele.cadse.runtime</groupId>
         	<artifactId>cu.core</artifactId>
         </dependency>
         <dependency>
@@ -107,7 +107,7 @@
         	<type>pom</type>
         </dependency>
         <dependency>
-        	<groupId>fr.imag.adele.cadse</groupId>
+        	<groupId>fr.imag.adele.cadse.runtime</groupId>
         	<artifactId>util.io</artifactId>
         </dependency>
     </dependencies>
