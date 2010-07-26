@@ -52,7 +52,6 @@ import fede.workspace.tool.eclipse.MappingManager;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
 import java.util.UUID;
-import fr.imag.adele.cadse.core.IGenerateContent;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
@@ -65,7 +64,7 @@ import fr.imag.adele.fede.workspace.si.view.View;
  * 
  * @author <a href="mailto:stephane.chomat@imag.fr">Stephane Chomat</a>
  */
-public class EclipsePluginContentManger extends JavaProjectContentManager implements IGenerateContent {
+public class EclipsePluginContentManger extends JavaProjectContentManager  {
 
 	/** The Constant SOURCES. */
 	private static final String	SOURCES	= "sources";
@@ -117,7 +116,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	/**
 	 * The Class PDEGenerateModel.
 	 */
-	static public class PDEGenerateModel extends GenerateModel {
+	static public class PDEGenerateModel  {
 
 		/** The qualified activator name. */
 		public String	qualifiedActivatorName;
@@ -212,9 +211,12 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * @throws CoreException
 	 *             the core exception
 	 */
-	public IFile generateActivator(IProject fProject, PDEGenerateModel info, String content, IProgressMonitor monitor)
+	public IFile generateActivator(IProject fProject, PDEGenerateModel info, IProgressMonitor monitor)
 			throws CoreException {
 
+		ActivatorTemplate at = new ActivatorTemplate();
+		String activatorContent = at.generate(info);
+		
 		IPath path;
 		if (info.sourceName != null) {
 			path = new Path(info.sourceName).append(info.packageName.replace('.', '/')).append(
@@ -223,7 +225,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			path = new Path(info.packageName.replace('.', '/')).append(info.activatorName + ".java");
 		}
 
-		return generateJava(fProject.getFile(path), content, monitor);
+		return generateJava(fProject.getFile(path), activatorContent, monitor);
 	}
 
 	/**
@@ -349,12 +351,12 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 			JavaProjectManager.replaceProjectClasspath(newContainerEntry, javaProject, monitor);
 		}
 
-		ActivatorTemplate at = new ActivatorTemplate();
-		String activatorContent = at.generate(info);
+		
 		if (hasActivator())
-			generateActivator(project, info, activatorContent, monitor);
+			generateActivator(project, info, monitor);
 
-		generateManifest(info, monitor);
+		if (hasGeneratedManifest())
+			generateManifest(info, monitor);
 		generatePluginXml(info, project, monitor);
 		return project;
 	}
@@ -370,10 +372,12 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 *            the workspace plugin model
 	 */
 	protected void computeExtension(Item item, IPluginBase pluginBase, WorkspacePluginModel workspacePluginModel) {
-		Object o = item.getContentItem();
-		if (o instanceof IPDEContributor) {
-			((IPDEContributor) o).computeExtenstion(pluginBase, workspacePluginModel);
-		}
+		IPDEContributor[] pdeContributor = item.getType().adapts(IPDEContributor.class);
+		if (pdeContributor != null)
+			for (IPDEContributor c : pdeContributor) {
+				c.computeExtenstion(item, pluginBase, workspacePluginModel);
+			}
+		
 		for (Link l : item.getOutgoingLinks()) {
 			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeExtension(l.getResolvedDestination(), pluginBase, workspacePluginModel);
@@ -475,9 +479,9 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 * 
 	 * @see fr.imag.adele.cadse.core.IGenerateContent#generate(fr.imag.adele.cadse.core.var.ContextVariable)
 	 */
-	synchronized public void generate(ContextVariable cxt) {
+	synchronized public void generate(PDEGenerateModel state, ContextVariable cxt) {
 		try {
-			PDEGenerateModel info = (PDEGenerateModel) getGenerateModel();
+			PDEGenerateModel info = state;
 
 			IProgressMonitor monitor = View.getDefaultMonitor();
 			IProject project = getProject();
@@ -485,11 +489,11 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 				project.create(monitor);
 				project.open(monitor);
 			}
-			ActivatorTemplate at = new ActivatorTemplate();
-			String activatorContent = at.generate(info);
-			if (hasActivator())
-				generateActivator(project, info, activatorContent, monitor);
-			generateManifest(info, monitor);
+			if (hasActivator()) {
+				generateActivator(project, info, monitor);
+			}
+			if (hasGeneratedManifest())
+				generateManifest(info, monitor);
 			generatePluginXml(info, project, monitor);
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
@@ -497,12 +501,16 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 		}
 	}
 
+	protected boolean hasGeneratedManifest() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see fr.imag.adele.cadse.core.IGenerateContent#getGenerateModel()
 	 */
-	public GenerateModel getGenerateModel() {
+	public PDEGenerateModel getGenerateModel() {
 		PDEGenerateModel info = new PDEGenerateModel();
 		computeModel(info);
 		return info;
@@ -528,10 +536,12 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 *            the imports
 	 */
 	protected void computeManifestImports(Item item, Set<String> imports) {
-		Object o = item.getContentItem();
-		if (o instanceof IPDEContributor) {
-			((IPDEContributor) o).computeImportsPackage(imports);
-		}
+		IPDEContributor[] pdeContributor = item.getType().adapts(IPDEContributor.class);
+		if (pdeContributor != null)
+			for (IPDEContributor c : pdeContributor) {
+				c.computeImportsPackage(item, imports);
+			}
+		
 		for (Link l : item.getOutgoingLinks()) {
 			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeManifestImports(l.getResolvedDestination(), imports);
@@ -559,10 +569,13 @@ public class EclipsePluginContentManger extends JavaProjectContentManager implem
 	 *            the exports
 	 */
 	protected void computeManifestExports(Item item, HashSet<String> exports) {
-		Object o = item.getContentItem();
-		if (o instanceof IPDEContributor) {
-			((IPDEContributor) o).computeExportsPackage(exports);
-		}
+		IPDEContributor[] pdeContributor = item.getType().adapts(IPDEContributor.class);
+		
+		if (pdeContributor != null)
+			for (IPDEContributor c : pdeContributor) {
+				c.computeExportsPackage(item, exports);
+			}
+		
 		for (Link l : item.getOutgoingLinks()) {
 			if (l.getLinkType().isPart() && l.isLinkResolved()) {
 				computeManifestExports(l.getResolvedDestination(), exports);

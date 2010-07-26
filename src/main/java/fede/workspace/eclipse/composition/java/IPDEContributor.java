@@ -23,14 +23,19 @@ package fede.workspace.eclipse.composition.java;
 
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.pde.core.plugin.IPluginBase;
+import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel;
+
+import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.objectadapter.ObjectAdapter;
 
 
 /**
  * The Interface IPDEContributor.
  */
-public interface IPDEContributor {
+public class IPDEContributor extends ObjectAdapter<IPDEContributor>{
 	
 	/**
 	 * Compute imports package.
@@ -38,7 +43,8 @@ public interface IPDEContributor {
 	 * @param imports
 	 *            the imports
 	 */
-	public void computeImportsPackage(Set<String> imports);
+	public void computeImportsPackage(Item currentItem, Set<String> imports) {
+	}
 	
 	/**
 	 * Compute exports package.
@@ -46,7 +52,8 @@ public interface IPDEContributor {
 	 * @param exports
 	 *            the exports
 	 */
-	public void computeExportsPackage(Set<String> exports);
+	public void computeExportsPackage(Item currentItem, Set<String> exports) {
+	}
 	
 	/**
 	 * Compute extenstion.
@@ -56,5 +63,37 @@ public interface IPDEContributor {
 	 * @param workspacePluginModel
 	 *            the workspace plugin model
 	 */
-	public void computeExtenstion(IPluginBase pluginBase, WorkspacePluginModel workspacePluginModel);
+	public void computeExtenstion(Item currentItem, IPluginBase pluginBase, WorkspacePluginModel workspacePluginModel) {
+	}
+
+	@Override
+	public Class<IPDEContributor> getClassAdapt() {
+		return IPDEContributor.class;
+	}
+	
+	/**
+	 * Find extension.
+	 * 
+	 * @param pluginBase
+	 *            the plugin base
+	 * @param exts
+	 *            the exts
+	 * @param pt
+	 *            the pt
+	 * 
+	 * @return the i plugin extension
+	 * 
+	 * @throws CoreException
+	 *             the core exception
+	 */
+	protected IPluginExtension findExtension(IPluginBase pluginBase, IPluginExtension[] exts, String pt)
+			throws CoreException {
+		for (IPluginExtension e : exts) {
+			if (e.getPoint().equals(pt)) {
+				return e;
+			}
+		}
+		return null;
+	}
+
 }
