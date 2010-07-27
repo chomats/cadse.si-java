@@ -20,7 +20,9 @@
 package fede.workspace.eclipse.composition.java;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -52,10 +54,14 @@ import fede.workspace.tool.eclipse.MappingManager;
 import fr.imag.adele.cadse.core.CadseException;
 import fr.imag.adele.cadse.core.CadseGCST;
 import java.util.UUID;
+
+import fr.imag.adele.cadse.core.GenContext;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
+import fr.imag.adele.cadse.core.impl.CadseCore;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
 
@@ -163,21 +169,26 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 		}
 	}
 
+	public List<IPDEContributor> getPdeContributors(ContextVariable cxt) {
+		List<IPDEContributor> pdeContributor = new ArrayList<IPDEContributor>();
+		CadseCore.adapts(getOwnerItem(), cxt, IPDEContributor.class, pdeContributor, null);
+		return pdeContributor;
+	}
 	/**
 	 * Compute model.
 	 * 
 	 * @param model
 	 *            the model
 	 */
-	protected void computeModel(PDEGenerateModel model) {
+	protected void computeModel(PDEGenerateModel model, List<IPDEContributor> pdeContributor) {
 		model.activatorName = hasActivator()? "Activator" : null;
 		model.packageName = getDefaultPackage();
 		model.qualifiedActivatorName = getDefaultPackage() + "." + model.activatorName;
 		model.isLazyStart = false;
 		model.pluginID = getOwnerItem().getQualifiedName();
 		model.sourceName = SOURCES;
-		model.importsPackages = computeManifestImports();
-		model.exportsPackages = computeManifestExports();
+		model.importsPackages = computeManifestImports(pdeContributor);
+		model.exportsPackages = computeManifestExports(pdeContributor);
 
 	}
 
@@ -435,7 +446,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 	 * @param omf
 	 *            the omf
 	 */
-	protected void computeManifest(OsgiManifest omf) {
+	public void computeManifest(OsgiManifest omf) {
 	}
 
 	/**
@@ -501,7 +512,7 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 		}
 	}
 
-	protected boolean hasGeneratedManifest() {
+	public boolean hasGeneratedManifest() {
 		return true;
 	}
 
@@ -512,75 +523,39 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 	 */
 	public PDEGenerateModel getGenerateModel() {
 		PDEGenerateModel info = new PDEGenerateModel();
-		computeModel(info);
+		computeModel(info, getPdeContributors(ContextVariableImpl.DEFAULT));
 		return info;
 	}
 
 	/**
 	 * Compute manifest imports.
+	 * @param pdeContributor 
 	 * 
 	 * @return the string[]
 	 */
-	protected String[] computeManifestImports() {
+	protected String[] computeManifestImports(List<IPDEContributor> pdeContributor) {
 		SortedSet<String> imports = new TreeSet<String>();
-		computeManifestImports(getOwnerItem(), imports);
+		for (IPDEContributor c : pdeContributor) {
+			c.computeImportsPackage(getOwnerItem(), imports);
+		}
 		return imports.toArray(new String[imports.size()]);
 	}
 
-	/**
-	 * Compute manifest imports.
-	 * 
-	 * @param item
-	 *            the item
-	 * @param imports
-	 *            the imports
-	 */
-	protected void computeManifestImports(Item item, Set<String> imports) {
-		IPDEContributor[] pdeContributor = item.getType().adapts(IPDEContributor.class);
-		if (pdeContributor != null)
-			for (IPDEContributor c : pdeContributor) {
-				c.computeImportsPackage(item, imports);
-			}
-		
-		for (Link l : item.getOutgoingLinks()) {
-			if (l.getLinkType().isPart() && l.isLinkResolved()) {
-				computeManifestImports(l.getResolvedDestination(), imports);
-			}
-		}
-	}
+	
 
 	/**
 	 * Compute manifest exports.
+	 * @param pdeContributor 
 	 * 
 	 * @return the string[]
 	 */
-	protected String[] computeManifestExports() {
+	protected String[] computeManifestExports(List<IPDEContributor> pdeContributor) {
 		HashSet<String> exports = new HashSet<String>();
-		computeManifestExports(getOwnerItem(), exports);
+		for (IPDEContributor c : pdeContributor) {
+			c.computeExportsPackage(getOwnerItem(), exports);
+		}
 		return exports.toArray(new String[exports.size()]);
 	}
 
-	/**
-	 * Compute manifest exports.
-	 * 
-	 * @param item
-	 *            the item
-	 * @param exports
-	 *            the exports
-	 */
-	protected void computeManifestExports(Item item, HashSet<String> exports) {
-		IPDEContributor[] pdeContributor = item.getType().adapts(IPDEContributor.class);
-		
-		if (pdeContributor != null)
-			for (IPDEContributor c : pdeContributor) {
-				c.computeExportsPackage(item, exports);
-			}
-		
-		for (Link l : item.getOutgoingLinks()) {
-			if (l.getLinkType().isPart() && l.isLinkResolved()) {
-				computeManifestExports(l.getResolvedDestination(), exports);
-			}
-		}
-	}
 	
 }
