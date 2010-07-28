@@ -60,6 +60,7 @@ import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.ItemType;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.impl.CadseCore;
+import fr.imag.adele.cadse.core.impl.CadseCore.AdapterEntry;
 import fr.imag.adele.cadse.core.var.ContextVariable;
 import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
@@ -169,8 +170,8 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 		}
 	}
 
-	public List<IPDEContributor> getPdeContributors(ContextVariable cxt) {
-		List<IPDEContributor> pdeContributor = new ArrayList<IPDEContributor>();
+	public List<CadseCore.AdapterEntry<IPDEContributor>> getPdeContributors(ContextVariable cxt) {
+		List<CadseCore.AdapterEntry<IPDEContributor>> pdeContributor = new ArrayList<CadseCore.AdapterEntry<IPDEContributor>>();
 		CadseCore.adapts(getOwnerItem(), cxt, IPDEContributor.class, pdeContributor, null);
 		return pdeContributor;
 	}
@@ -180,15 +181,15 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 	 * @param model
 	 *            the model
 	 */
-	protected void computeModel(PDEGenerateModel model, List<IPDEContributor> pdeContributor) {
+	protected void computeModel(PDEGenerateModel model, List<AdapterEntry<IPDEContributor>> list) {
 		model.activatorName = hasActivator()? "Activator" : null;
 		model.packageName = getDefaultPackage();
 		model.qualifiedActivatorName = getDefaultPackage() + "." + model.activatorName;
 		model.isLazyStart = false;
 		model.pluginID = getOwnerItem().getQualifiedName();
 		model.sourceName = SOURCES;
-		model.importsPackages = computeManifestImports(pdeContributor);
-		model.exportsPackages = computeManifestExports(pdeContributor);
+		model.importsPackages = computeManifestImports(list);
+		model.exportsPackages = computeManifestExports(list);
 
 	}
 
@@ -529,14 +530,14 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 
 	/**
 	 * Compute manifest imports.
-	 * @param pdeContributor 
+	 * @param list 
 	 * 
 	 * @return the string[]
 	 */
-	protected String[] computeManifestImports(List<IPDEContributor> pdeContributor) {
+	protected String[] computeManifestImports(List<AdapterEntry<IPDEContributor>> list) {
 		SortedSet<String> imports = new TreeSet<String>();
-		for (IPDEContributor c : pdeContributor) {
-			c.computeImportsPackage(getOwnerItem(), imports);
+		for (AdapterEntry<IPDEContributor> c : list) {
+			c.adapter.computeImportsPackage(c.currentItem, imports);
 		}
 		return imports.toArray(new String[imports.size()]);
 	}
@@ -545,14 +546,14 @@ public class EclipsePluginContentManger extends JavaProjectContentManager  {
 
 	/**
 	 * Compute manifest exports.
-	 * @param pdeContributor 
+	 * @param list 
 	 * 
 	 * @return the string[]
 	 */
-	protected String[] computeManifestExports(List<IPDEContributor> pdeContributor) {
+	protected String[] computeManifestExports(List<AdapterEntry<IPDEContributor>> list) {
 		HashSet<String> exports = new HashSet<String>();
-		for (IPDEContributor c : pdeContributor) {
-			c.computeExportsPackage(getOwnerItem(), exports);
+		for (AdapterEntry<IPDEContributor> c : list) {
+			c.adapter.computeExportsPackage(c.currentItem, exports);
 		}
 		return exports.toArray(new String[exports.size()]);
 	}
