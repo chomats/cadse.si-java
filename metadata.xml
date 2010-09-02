@@ -3,8 +3,8 @@
 	<component immediate="false" classname="fr.imag.adele.fede.workspace.si.java.Java" factory="fr.imag.adele.fede.workspace.si.java.Java" architecture="true">
 		<callback transition="validate" method="start"/>
 		<callback transition="invalidate" method="stop"/>
-		<requires field="workspaceCU" optional="true" filter="(sam.domain.root=Workspace)"/>
-		<requires field="platformEclipse" optional="false"/>
+		<requires field="workspaceCU" optional="true" filter="(sam.domain.root=Workspace)" proxy="false" nullable="false"/>
+		<requires field="platformEclipse" optional="false" proxy="false" nullable="false"/>
 	</component>
 	<instance component="fr.imag.adele.fede.workspace.si.java.Java" name="fr.imag.adele.cadse.si.workspace.java.instance"/>
 </ipojo>
