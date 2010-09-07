@@ -15,10 +15,8 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
-/*
- * Adele/LIG/ Grenoble University, France
- * 2006-2008
+ *
+ * Copyright (C) 2006-2010 Adele Team/LIG/Grenoble University, France
  */
 package fede.workspace.eclipse.composition.java;
 
